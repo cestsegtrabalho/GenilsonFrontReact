@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Loja from "./assets/js/loja";
+import './assets/css/loja.css'
 
 const App = () => {
   return (

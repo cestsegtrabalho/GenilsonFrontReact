@@ -1,0 +1,113 @@
+.father-loja{
+    margin: 10px;
+}
+
+.divInfoloja-loja{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-loja{
+    border-radius: 10px;
+    width: 10%; /* Ajusta a largura da imagem para preencher completamente o contêiner */
+    height: auto; /* Garante que a altura seja ajustada automaticamente */
+}
+
+.info-loja{
+    margin: -1px;
+}
+
+.select-categorias-loja{
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    padding: 4px;
+}
+
+.option-categorias-loja{
+    background-color: none;
+    border: none;
+    border-radius: 50px;
+}
+
+.product-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.product-item {
+    width: calc(44.6% - 20px); /* Ajuste para garantir que haja espaço suficiente para 4 itens por linha */
+    min-width: 500px; /* Define uma largura mínima para os itens */
+    max-width: 90%; /* Define uma largura máxima para os itens */
+    border: 1px solid;
+    border-color: #e5e7eb;
+    padding: 0px 1px 1px 10px;
+    background-color: #ffffff;
+    border-radius: 7px;
+    margin-bottom: 10px;
+    box-sizing: border-box; /* Garante que o padding e a borda não aumentem a largura do item */
+    color: #000000;
+    display: flex;
+    flex-direction: row;
+}
+
+.divContent-productItem{
+    min-width: 300px; /* Define uma largura mínima para os itens */
+    max-width: 35%; /* Define uma largura máxima para os itens */
+    margin-right: -12%;
+}
+
+.divImg-productItem{
+    min-width: 200px; /* Define uma largura mínima para os itens */
+    max-width: 15%; /* Define uma largura máxima para os itens */
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.img-product-manageProduct {
+    width: 100%; /* Ajusta a largura da imagem para preencher completamente o contêiner */
+    height: auto; /* Garante que a altura seja ajustada automaticamente */
+    border-radius: 7px; /* Adiciona borda arredondada à imagem */
+    padding-right: -50px;
+    margin-right: -50px;
+}
+
+.truncate-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3; /* Número máximo de linhas */
+    line-height: 1.5; /* Altura da linha */
+    max-height: 4.5em; /* 3 linhas * 1.5em */
+}
+  
+  
+
+.editButton-manageProduct{
+    background-color: #ffffff;
+    color: #000000;
+    font-weight: 600;
+    border: none;
+    padding: 3px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.div-meusProdutos-meusPedidos{
+    display: flex;
+    flex-direction: row;
+}
+
+.meus-produtos{
+
+}
+
+.meus-pedidos{
+
+}
