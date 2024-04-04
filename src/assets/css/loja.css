@@ -90,13 +90,15 @@
   
 
 .editButton-manageProduct{
-    background-color: #ffffff;
-    color: #000000;
+    background-color: #000000;
+    color: #ffffff;
     font-weight: 600;
     border: none;
     padding: 3px 20px;
+    margin-top: 10px;
     border-radius: 5px;
     cursor: pointer;
+
 }
 
 .div-meusProdutos-meusPedidos{
@@ -110,4 +112,16 @@
 
 .meus-pedidos{
 
+}
+
+.forma-loja{
+    padding-top: -10%;
+}
+
+.obsLabel-loja{
+    font-size: small;
+}
+
+.obsInput-loja{
+    width: 65%;
 }

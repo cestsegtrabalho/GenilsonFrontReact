@@ -16,6 +16,9 @@ const Loja = () => {
     const [showPopup, setShowPopup] = useState(false);
 
     // Pedido sem cadastro
+    const unknowUser = async () => {
+        localStorage.setItem('nome', 'nome')
+    }
 
     // Pedido com cadastro
 
@@ -93,19 +96,36 @@ const Loja = () => {
 
     // POST - Adiciona ao carrinho
     const addToCart = async (productNome, productDescricao, productTamanhos, productSabores, productPreco) => {
-        openPopup()
+        // Cria a conta do usuário provisória
         try {
-            const response = await axios.post('http://localhost:8080/pedidos', {
-            nome: productNome,
-            descricao: productDescricao,
-            tamanhos: productTamanhos,
-            sabores: productSabores,
-            preco: productPreco,
-        })
-        console.log('Sucesso ao adicionar no carrinho ', response.data)
+            // Código que cria a conta
+            unknowUser()
+            const name = 'Stanley'
+            const email = '1'
+            const password = '0'
+            const responseCreateUser = await axios.post("http://localhost:8080/user/criar", { name, email, password })
+            const idUser = responseCreateUser.data._id
+            console.log('Sucesso ao criar prévia de usuário ', responseCreateUser.data)
+
+
+            // Cria o pedido
+            try {
+                const response = await axios.post('http://localhost:8080/pedidos', {
+                nome: productNome,
+                descricao: productDescricao,
+                tamanhos: productTamanhos,
+                sabores: productSabores,
+                preco: productPreco,
+            })
+            console.log('Sucesso ao adicionar no carrinho ', response.data)
+            } catch (error) {
+                console.error('Erro ao adicionar ao carrinho', error)
+            }
+
         } catch (error) {
-            console.error('Erro ao adicionar ao carrinho', error)
+            
         }
+
     };
 
 // Fecha o pedido e envia pelo whatsapp
@@ -213,6 +233,10 @@ window.open(codigoTodo, '_self')
                                                 ))}
                                             </ul>
                                             </div>
+                                            <form className="form-loja">
+                                            <label className="obsLabel-loja">Observação </label>
+                                            <input className="obsInput-loja"></input>
+                                            </form>
                                             <button onClick={() => addToCart(product.nome, product.descricao, product.tamanhos, product.sabores, product.preco)} className="editButton-manageProduct">Colocar no Carrinho</button>
                                         </div>
                                         <div className="divImg-productItem">
