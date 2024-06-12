@@ -1,117 +1,102 @@
-.father-home{
-    margin: 10px;
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.dados{
-    text-align: center;
-}
-
-.item {
-    width: calc(44.6% - 20px); /* Ajuste para garantir que haja espaço suficiente para 4 itens por linha */
-    min-width: 400px; /* Define uma largura mínima para os itens */
-    max-width: 90%; /* Define uma largura máxima para os itens */
-    border: 1px solid;
-    border-color: #e5e7eb;
-    padding: 0px 1px 1px 10px;
-    background-color: #ffffff;
-    border-radius: 7px;
-    margin-bottom: 10px;
-    box-sizing: border-box; /* Garante que o padding e a borda não aumentem a largura do item */
-    color: #000000;
+.father-home {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
 }
 
+/* Perfil */
 
-.select-categorias-loja{
-    background-color: #000000;
-    color: #ffffff;
-    font-weight: 600;
-    border: none;
-    border-radius: 5px;
-    padding: 4px;
-}
-
-.option-categorias-loja{
-    background-color: none;
-    border: none;
-    border-radius: 50px;
-}
-
-.product-container{
+.user-profile {
+    padding: 20px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    justify-content: space-between;
 }
 
-
-
-.divContent-productItem{
-    min-width: 300px; /* Define uma largura mínima para os itens */
-    max-width: 35%; /* Define uma largura máxima para os itens */
-    margin-right: -12%;
-}
-
-.divImg-productItem{
-    min-width: 200px; /* Define uma largura mínima para os itens */
-    max-width: 15%; /* Define uma largura máxima para os itens */
+.profile-info {
     display: flex;
     align-items: center;
-    justify-content: end;
 }
 
-.img-product-manageProduct {
-    width: 100%; /* Ajusta a largura da imagem para preencher completamente o contêiner */
-    height: auto; /* Garante que a altura seja ajustada automaticamente */
-    border-radius: 7px; /* Adiciona borda arredondada à imagem */
-    padding-right: -50px;
-    margin-right: -50px;
+.profile-icon {
+    font-size: 50px;
+    color: #212529;
+    margin-right: 10px;
 }
 
-.truncate-text {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 3; /* Número máximo de linhas */
-    line-height: 1.5; /* Altura da linha */
-    max-height: 4.5em; /* 3 linhas * 1.5em */
-}
-  
-  
-
-.editButton-manageProduct{
-    background-color: #000000;
-    color: #ffffff;
-    font-weight: 600;
-    border: none;
-    padding: 3px 20px;
-    margin-top: 10px;
-    border-radius: 5px;
-    cursor: pointer;
+.user-info h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #6c757d;
 }
 
-.div-meusProdutos-meusPedidos{
+.user-info p {
+    margin: 0;
+    color: gray;
+    font-size: 14px;
+}
+
+/* Logout */
+
+.settings{
     display: flex;
-    flex-direction: row;
+    align-items: center;
 }
 
-.meus-produtos{
+.profile-icon-logout{
+    font-size: 30px;
+    color: #212529;
+    margin-right: 10px;
+}
+
+/* Barra de Navegação */
+
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0;
+    background-color: #f9fafb;
+    z-index: 1000; /* Garante que a barra esteja no topo */
+}
+
+.div-buttons, .bottom-bar {
+    display: flex;
+    justify-content: center;
+    gap: 55px;
+    margin: 0;
+}
+
+.bottom-bar-button {
+    background-color: #f9fafb;
+    color: #212529;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    font-size: 12px;
+    margin: 4px 0px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.bottom-bar-button:hover {
 
 }
 
-.meus-pedidos{
-
+.icone-buttonbar{
+    font-size: 30px;
 }
 
-.forma-loja{
-    padding-top: -10%;
-}
-
-.obsLabel-loja{
-    font-size: small;
-}
-
-.obsInput-loja{
-    width: 65%;
+.icone-buttonbar-dumbble{
+    font-size: 34px;
 }
