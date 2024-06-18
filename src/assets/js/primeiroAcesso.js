@@ -8,7 +8,7 @@ const PrimeiroAcesso = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://192.168.247.103:8080/first-access', { email });
+      const response = await axios.post('http://15.228.166.75:8080/first-access', { email });
       setMessage(response.data.message);
     } catch (error) {
       setMessage(error.response.data.message);

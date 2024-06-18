@@ -25,7 +25,7 @@ const CreateTreino = () => {
 
     const fetchDataToken = async () => {
         try {
-            const responseUserToken = await axios.get(`http://192.168.247.103:8080/protected/user/buscar`, {
+            const responseUserToken = await axios.get(`http://15.228.166.75:8080/protected/user/buscar`, {
                 headers: { Authorization: `${localStorage.getItem("token")}` }
             });
             setIsLoggedIn(true);
@@ -58,7 +58,7 @@ const CreateTreino = () => {
             const treinoData = { treino1, treino2, treino3, treino4, treino5, treino6, treino7, userid: Userid};
 
             try {
-                await axios.post('http://192.168.247.103:8080/treino/criar', treinoData, config);
+                await axios.post('http://15.228.166.75:8080/treino/criar', treinoData, config);
                 console.log('Treino cadastrado com sucesso');
                 //navigate('/algumaRotaParaRedirecionar'); // Redirecione para outra página após criar o treino
             } catch (error) {

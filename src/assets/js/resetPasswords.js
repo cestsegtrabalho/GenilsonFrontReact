@@ -17,7 +17,7 @@ const ResetPassword = () => {
     }
 
     try {
-      const response = await axios.post(`http://192.168.247.103:8080/reset-password/${token}`, { password });
+      const response = await axios.post(`http://15.228.166.75:8080/reset-password/${token}`, { password });
       setMessage(response.data.message);
       // Redirect to login page after successful password reset
       setTimeout(() => {
