@@ -20,7 +20,7 @@ const LoginUser = () => {
     const [message, setMessage] = useState('')
 
     const handleLogin = () => {
-      axios.post("http://15.228.166.75:8080/user/login", { email, password })
+      axios.post("https://fittreinoapp.com/user/login", { email, password })
         .then((response) => {
           const { token, id, name, username, phone } = response.data;
           setToken(token);
