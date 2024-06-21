@@ -18,7 +18,7 @@ const Login = () => {
     const [message, setMessage] = useState('')
 
     const handleLogin = () => {
-      axios.post("https://fittreinoapp.com/user/login", { email, password })
+      axios.post("https://api.fittreinoapp.com/user/login", { email, password })
         .then((response) => {
           const { token, id, name, username, phone } = response.data;
           setToken(token);

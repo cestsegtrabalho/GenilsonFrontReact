@@ -11,7 +11,7 @@ const DisplayTreinos = () => {
     // Pega os dados da loja
     const fetchUserData = async () => {
         try {
-            const responseUser = await axios.get(`https://fittreinoapp.com/${username}`);
+            const responseUser = await axios.get(`https://api.fittreinoapp.com/${username}`);
             setUserData(responseUser.data);
         } catch (error) {
             console.error("Erro ao buscar os dados da loja: ", error);
@@ -20,7 +20,7 @@ const DisplayTreinos = () => {
 
     const fetchTreinos = async () => {
         try {
-            const response = await axios.get(`https://fittreinoapp.com/treino/${userData._id}`)
+            const response = await axios.get(`https://api.fittreinoapp.com/treino/${userData._id}`)
             setTreinos(response.data);
         } catch (error) {
             console.error('Erro ao buscar treinos: ', error);

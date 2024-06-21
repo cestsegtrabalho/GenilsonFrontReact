@@ -18,7 +18,7 @@ const Dados = () => {
     // Pega os dados da loja
     const fetchLoja = async () => {
         try {
-            const responseUser = await axios.get(`https://fittreinoapp.com/${username}`);
+            const responseUser = await axios.get(`https://api.fittreinoapp.com/${username}`);
             setUserData(responseUser.data);
         } catch (error) {
             console.error("Erro ao buscar os dados da loja: ", error);
@@ -27,7 +27,7 @@ const Dados = () => {
 
     const fetchDataToken = async () => {
         try {
-            const responseUserToken = await axios.get(`https://fittreinoapp.com/protected/user/buscar`, {
+            const responseUserToken = await axios.get(`https://api.fittreinoapp.com/protected/user/buscar`, {
                 headers: { Authorization: `${localStorage.getItem("token")}` }
             });
             setIsLoggedIn(true);
@@ -46,7 +46,7 @@ const Dados = () => {
     // Pega as perimetrias do usuário
     const fetchPerimetrias = async () => {
         try {
-            const responsePerimetrias = await axios.get(`https://fittreinoapp.com/perimetria/${userData._id}`);
+            const responsePerimetrias = await axios.get(`https://api.fittreinoapp.com/perimetria/${userData._id}`);
             setPerimetrias(responsePerimetrias.data.reverse());
         } catch (error) {
             console.error("Erro ao buscar as perimetrias do usuário: ", error);
@@ -56,7 +56,7 @@ const Dados = () => {
     // Pega as dobras cutâneas do usuário
     const fetchDobrasCutaneas = async () => {
         try {
-            const responseDobrasCutaneas = await axios.get(`https://fittreinoapp.com/dobrascutaneas/${userData._id}`);
+            const responseDobrasCutaneas = await axios.get(`https://api.fittreinoapp.com/dobrascutaneas/${userData._id}`);
             setDobrasCutaneas(responseDobrasCutaneas.data.reverse());
         } catch (error) {
             console.error("Erro ao buscar as dobras cutâneas do usuário: ", error);
