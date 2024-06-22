@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 
 const CreateTreino = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const [treino1, setTreino1] = useState([{ grupoMuscular: "", exercicio: "", series: "", repeticoes: "" }]);
     const [treino2, setTreino2] = useState([{ grupoMuscular: "", exercicio: "", series: "", repeticoes: "" }]);
     const [treino3, setTreino3] = useState([{ grupoMuscular: "", exercicio: "", series: "", repeticoes: "" }]);
@@ -50,6 +51,7 @@ const CreateTreino = () => {
 
             const Userid = localStorage.getItem('AlunoUserid');
             const UserStoreid = localStorage.getItem('userStoreid');
+            const username = localStorage.getItem('AlunoUsername');
 
             const config = {
                 headers: { Authorization: token }
@@ -60,7 +62,7 @@ const CreateTreino = () => {
             try {
                 await axios.post('https://api.fittreinoapp.com/treino/criar', treinoData, config);
                 console.log('Treino cadastrado com sucesso');
-                //navigate('/algumaRotaParaRedirecionar'); // Redirecione para outra página após criar o treino
+                window.location.reload()
             } catch (error) {
                 console.error('Erro ao criar Treino: ', error);
             }

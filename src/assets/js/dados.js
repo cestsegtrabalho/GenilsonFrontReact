@@ -5,89 +5,109 @@ import moment from 'moment';
 import { FaDumbbell, FaUserCircle } from 'react-icons/fa';
 import { IoIosLogOut } from "react-icons/io";
 
-
 const Dados = () => {
     const { username } = useParams();
     const [userData, setUserData] = useState(null);
     const [perimetrias, setPerimetrias] = useState([]);
     const [dobrascutaneas, setDobrasCutaneas] = useState([]);
-    const [selectedDobra, setSelectedDobra] = useState(null); // Adicionando estado para controlar qual dobra está selecionada
-    const [selectedPerimetria, setSelectedPerimetria] = useState(null); // Adicionando estado para controlar qual perimetria está selecionada
+    const [selectedDobra, setSelectedDobra] = useState(null);
+    const [selectedPerimetria, setSelectedPerimetria] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
+    const [newUserData, setNewUserData] = useState({
+        name: "",
+        endereco: "",
+        phone: "",
+        email: "",
+        nameperson: "",
+    });
 
-    // Pega os dados da loja
-    const fetchLoja = async () => {
+    // Fetch de dados do usuário e permissões
+    const fetchData = async () => {
         try {
             const responseUser = await axios.get(`https://api.fittreinoapp.com/${username}`);
             setUserData(responseUser.data);
-        } catch (error) {
-            console.error("Erro ao buscar os dados da loja: ", error);
-        }
-    };
-
-    const fetchDataToken = async () => {
-        try {
-            const responseUserToken = await axios.get(`https://api.fittreinoapp.com/protected/user/buscar`, {
+            const responseToken = await axios.get(`https://api.fittreinoapp.com/protected/user/buscar`, {
                 headers: { Authorization: `${localStorage.getItem("token")}` }
             });
             setIsLoggedIn(true);
-            console.log('Rota acessada com sucesso');
         } catch (error) {
-            setIsLoggedIn(false);
-            console.error('Erro ao acessar rota');
+            console.error("Erro ao buscar dados do usuário:", error);
         }
     };
 
-    const clearLocalStorage = () => {
-        localStorage.clear();
-        window.location.reload();
-    };
-
-    // Pega as perimetrias do usuário
-    const fetchPerimetrias = async () => {
+    // Fetch de perimetrias e dobras cutâneas
+    const fetchMetrics = async () => {
         try {
             const responsePerimetrias = await axios.get(`https://api.fittreinoapp.com/perimetria/${userData._id}`);
             setPerimetrias(responsePerimetrias.data.reverse());
-        } catch (error) {
-            console.error("Erro ao buscar as perimetrias do usuário: ", error);
-        }
-    };
 
-    // Pega as dobras cutâneas do usuário
-    const fetchDobrasCutaneas = async () => {
-        try {
             const responseDobrasCutaneas = await axios.get(`https://api.fittreinoapp.com/dobrascutaneas/${userData._id}`);
             setDobrasCutaneas(responseDobrasCutaneas.data.reverse());
         } catch (error) {
-            console.error("Erro ao buscar as dobras cutâneas do usuário: ", error);
+            console.error("Erro ao buscar métricas do usuário:", error);
         }
     };
 
+    // Atualiza os dados do usuário
+    const handleUpdateUserData = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.patch("https://api.fittreinoapp.com/protected/userstore/editar", newUserData, {
+                headers: { Authorization: `${localStorage.getItem("token")}` }
+            });
+            setUserData(response.data.userData);
+            setIsEditing(false);
+        } catch (error) {
+            console.error("Erro ao atualizar dados do usuário:", error);
+        }
+    };
+
+    // Inicia a edição dos dados
+    const handleEditClick = () => {
+        setIsEditing(true);
+        setNewUserData({
+            name: userData.name,
+            phone: userData.phone,
+            email: userData.email,
+        });
+    };
+
+    // Cancela a edição dos dados
+    const handleCancelEdit = () => {
+        setIsEditing(false);
+    };
+
+    // Atualiza o estado dos inputs
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setNewUserData({ ...newUserData, [name]: value });
+    };
+
+    // Mostra mais detalhes das dobras cutâneas
+    const handleShowMoreDobra = (dobra) => {
+        setSelectedDobra(selectedDobra === dobra ? null : dobra);
+    };
+
+    // Mostra mais detalhes das perimetrias
+    const handleShowMorePerimetria = (perimetria) => {
+        setSelectedPerimetria(selectedPerimetria === perimetria ? null : perimetria);
+    };
+
     useEffect(() => {
-        fetchDataToken();
-        fetchLoja();
+        fetchData();
     }, [username]);
 
     useEffect(() => {
         if (userData) {
-            fetchPerimetrias();
-            fetchDobrasCutaneas();
+            fetchMetrics();
         }
     }, [userData]);
 
-    const handleShowMoreDobra = (dobra) => {
-        // Atualiza o estado para mostrar mais dados da dobra selecionada
-        setSelectedDobra(selectedDobra === dobra ? null : dobra);
-    };
-
-    const handleShowMorePerimetria = (perimetria) => {
-        // Atualiza o estado para mostrar mais dados da perimetria selecionada
-        setSelectedPerimetria(selectedPerimetria === perimetria ? null : perimetria);
-    };
-
     return (
         <div className="father-dados">
-            {userData ? (
+
+            {userData && !isEditing && (
                 <div>
                     <div className="user-profile">
                         <div className="profile-info">
@@ -95,29 +115,28 @@ const Dados = () => {
                             <div className="user-info">
                                 <h3>{userData.name}</h3>
                                 <p>@{userData.username}</p>
+                                {isLoggedIn && !isEditing && (
+                                <button className="editButton-account" onClick={handleEditClick}>Editar</button>
+                                )}
                             </div>
                         </div>
                         <div className="settings">
-                            {isLoggedIn && ( // Corrigido aqui
-                                <button className="bottom-bar-button" onClick={clearLocalStorage}>
+                            {isLoggedIn && (
+                                <button className="bottom-bar-button" onClick={() => { localStorage.clear(); window.location.reload(); }}>
                                     <IoIosLogOut className="profile-icon-logout" />
                                 </button>
                             )}
                         </div>
                     </div>
-                    {/* Exibir as dobras cutâneas */}
+
                     <h2 className="title-estado">Seu estado atual:</h2>
                     <div className="item">
                         {dobrascutaneas.slice(0, 1).map((dobra) => (
                             <ul key={dobra._id}>
-                                {/* Exibir os dados das dobras cutâneas */}
-                                {/* Exemplo: */}
                                 <p><b>Criado em:</b> {moment(dobra.createdAt).format('DD/MM/YYYY HH:mm')}</p>
                                 <p><b>Percentual de Gordura:</b> {dobra.resultadopercentualdegordura}%</p>
                                 <p><b>Peso Atual:</b> {dobra.pesoatual}kg</p>
-                                
-                                {/* Adicionando condição para mostrar mais dados quando o botão for clicado */}
-                                {/* {selectedDobra === dobra && (
+                                {selectedDobra === dobra && (
                                     <>
                                         <p>Peso Ideal: {dobra.pesoideal}</p>
                                         <p>Peitoral: {dobra.peitoral}</p>
@@ -134,55 +153,29 @@ const Dados = () => {
                                         <p>Peso Magro: {dobra.pesomagro}</p>
                                         <p>Idade: {dobra.idade}</p>
                                     </>
-                                )} */}
-                                {/* Botão para mostrar mais ou menos dados */}
-                                {/* <button onClick={() => handleShowMoreDobra(dobra)} className="button-dados">
-                                    {selectedDobra === dobra ? "Mostrar Menos" : "Mostrar Mais"}
-                                </button> */}
-                            </ul>
-                        ))}
-                    </div>
-
-                    {/*     
-                    <h2>Perimetrias:</h2>
-                    <div className="item">
-                        {perimetrias.slice(0, 1).map((perimetria) => (
-                            <ul key={perimetria._id}>
-
-                                {selectedPerimetria === perimetria && (
-                                    <>
-                                    <p><b>Criado em:</b> {moment(perimetria.createdAt).format('DD/MM/YYYY HH:mm')}</p>
-                                    <p>Braço relaxado esquerdo: {perimetria.bracoRelaxadoEsquerdo}cm</p>
-                                    <p>Braço relaxado direito: {perimetria.bracoRelaxadoDireito}cm</p>
-                                    <p>Braço contraído esquerdo: {perimetria.bracoContraidoEsquerdo}cm</p>
-                                    <p>Braço contraído direito: {perimetria.bracoContraidoDireito}cm</p>
-                                    <p>Antebraço esquerdo: {perimetria.antebracoEsquerdo}cm</p>
-                                    <p>Antebraço direito: {perimetria.antebracoDireito}cm</p>
-                                    <p>Perna esquerda: {perimetria.pernaEsquerdo}cm</p>
-                                    <p>Perna direita: {perimetria.pernaDireito}cm</p>
-                                    <p>Torax: {perimetria.torax}cm</p>
-                                    <p>Abdomen: {perimetria.abdomen}cm</p>
-                                    <p>Quadril: {perimetria.quadril}cm</p>
-
-
-                                    </>
                                 )}
-                                
-                                <button onClick={() => handleShowMorePerimetria(perimetria)} className="editButton-manageProduct">
-                                    {selectedPerimetria === perimetria ? "Mostrar Menos" : "Mostrar Mais"}
+                                <button onClick={() => handleShowMoreDobra(dobra)} className="button-dados">
+                                    {selectedDobra === dobra ? "Mostrar Menos" : "Mostrar Mais"}
                                 </button>
                             </ul>
                         ))}
                     </div>
-                    */}
-                    
-
                 </div>
-            ) : (
-                <p>Carregando dados do usuário...</p>
+
             )}
+            <div className="edit-container">
+                {isEditing && (
+                    <div className="div-inputs-account">
+                        <input type="text" name="name" value={newUserData.name} onChange={handleInputChange} placeholder="Novo Nome" className="input-account" />
+                        <input type="text" name="phone" value={newUserData.phone} onChange={handleInputChange} placeholder="Novo Telefone" className="input-account" />
+                        <input type="text" name="email" value={newUserData.email} onChange={handleInputChange} placeholder="Novo Email" className="input-account" />
+                        <button className="salvar-account" onClick={handleUpdateUserData}>Salvar</button>
+                        <button className="cancel-account" onClick={handleCancelEdit}>Cancelar</button>
+                    </div>
+                )}
+            </div>
         </div>
     );
-}
+};
 
 export default Dados;

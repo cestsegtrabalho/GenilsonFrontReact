@@ -1,7 +1,7 @@
 .father-treino {
     padding-left: 6px;
     padding-right: 6px;
-    padding-bottom: 10px;
+    padding-bottom: 60px;
 }
 
 /*Componente treinoCompleto*/
@@ -79,3 +79,20 @@
     padding-bottom: 120px;
 }
 
+/* Botão do displaytreino*/
+.toggleButton {
+    background-color: #212529;
+    color: #f9fafb;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column; /* Altera a direção dos elementos filhos para coluna */
+    align-items: center;
+    gap: 5px; /* Espaço entre o ícone e o texto */
+    font-size: 12px;
+    margin: 4px 0px;
+    cursor: pointer;
+    border-radius: 4px;
+}
