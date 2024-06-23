@@ -138,7 +138,6 @@ const Dados = () => {
                                 <p><b>Peso Atual:</b> {dobra.pesoatual}kg</p>
                                 {selectedDobra === dobra && (
                                     <>
-                                        <p>Peso Ideal: {dobra.pesoideal}</p>
                                         <p>Peitoral: {dobra.peitoral}</p>
                                         <p>Axilar Média: {dobra.axilarmedia}</p>
                                         <p>Triciptal: {dobra.triciptal}</p>
@@ -149,8 +148,6 @@ const Dados = () => {
                                         <p>Biciptal: {dobra.biciptal}</p>
                                         <p>Panturrilha Média: {dobra.panturrilhaMedia}</p>
                                         <p>Somatório das dobras: {dobra.somatoriodasdobras}</p>
-                                        <p>Peso Gordo: {dobra.pesogordo}</p>
-                                        <p>Peso Magro: {dobra.pesomagro}</p>
                                         <p>Idade: {dobra.idade}</p>
                                     </>
                                 )}
