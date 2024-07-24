@@ -12,6 +12,7 @@ import TreinoCompleto from "./treinoCompletos";
 import LoginUser from "./loginUser";
 import ResetPasswordRequest from "./resetPasswordrequest";
 import MensagemLogar from "../js/mensagemLogar";
+import { BsBook } from "react-icons/bs";
 
 const Home = () => {
     const { username } = useParams();
@@ -34,8 +35,9 @@ const Home = () => {
     // Pega os dados da loja
     const fetchData = async () => {
         try {
-            const responseUser = await axios.get(`https://api.fittreinoapp.com/${username}`);
+            const responseUser = await axios.get(`https://api.cestsegtrabalho.com.br/${username}`);
             setUserData(responseUser.data);
+            console.log('parametro: ', username)
         } catch (error) {
             console.error("Erro ao buscar os dados da loja: ", error);
         }
@@ -43,7 +45,7 @@ const Home = () => {
 
     const fetchDataToken = async () => {
         try {
-            const responseUserToken = await axios.get(`https://api.fittreinoapp.com/protected/user/buscar`, {
+            const responseUserToken = await axios.get(`https://api.cestsegtrabalho.com.br/protected/user/buscar`, {
                 headers: { Authorization: `${localStorage.getItem("token")}` }
             })
             setIsLoggedIn(true);
@@ -100,9 +102,8 @@ const Home = () => {
                                 <GoHistory className="icone-buttonbar"/> 
                             </button>
                             <button className="bottom-bar-button" onClick={buttonTreino}>
-                                <LiaDumbbellSolid className="icone-buttonbar-dumbble"/> 
+                                <BsBook className="icone-buttonbar-dumbble"/> 
                             </button>
-                        
                     </div>
                 </div>
             ) : (

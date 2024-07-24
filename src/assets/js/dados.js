@@ -25,9 +25,9 @@ const Dados = () => {
     // Fetch de dados do usuário e permissões
     const fetchData = async () => {
         try {
-            const responseUser = await axios.get(`https://api.fittreinoapp.com/${username}`);
+            const responseUser = await axios.get(`https://api.cestsegtrabalho.com.br/${username}`);
             setUserData(responseUser.data);
-            const responseToken = await axios.get(`https://api.fittreinoapp.com/protected/user/buscar`, {
+            const responseToken = await axios.get(`https://api.cestsegtrabalho.com.br/protected/user/buscar`, {
                 headers: { Authorization: `${localStorage.getItem("token")}` }
             });
             setIsLoggedIn(true);
@@ -36,24 +36,24 @@ const Dados = () => {
         }
     };
 
-    // Fetch de perimetrias e dobras cutâneas
-    const fetchMetrics = async () => {
-        try {
-            const responsePerimetrias = await axios.get(`https://api.fittreinoapp.com/perimetria/${userData._id}`);
-            setPerimetrias(responsePerimetrias.data.reverse());
+    // // Fetch de perimetrias e dobras cutâneas
+    // const fetchMetrics = async () => {
+    //     try {
+    //         const responsePerimetrias = await axios.get(`https://api.cestsegtrabalho.com.br/perimetria/${userData._id}`);
+    //         setPerimetrias(responsePerimetrias.data.reverse());
 
-            const responseDobrasCutaneas = await axios.get(`https://api.fittreinoapp.com/dobrascutaneas/${userData._id}`);
-            setDobrasCutaneas(responseDobrasCutaneas.data.reverse());
-        } catch (error) {
-            console.error("Erro ao buscar métricas do usuário:", error);
-        }
-    };
+    //         const responseDobrasCutaneas = await axios.get(`https://api.cestsegtrabalho.com.br/dobrascutaneas/${userData._id}`);
+    //         setDobrasCutaneas(responseDobrasCutaneas.data.reverse());
+    //     } catch (error) {
+    //         console.error("Erro ao buscar métricas do usuário:", error);
+    //     }
+    // };
 
     // Atualiza os dados do usuário
     const handleUpdateUserData = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.patch("https://api.fittreinoapp.com/protected/userstore/editar", newUserData, {
+            const response = await axios.patch("https://api.cestsegtrabalho.com.br/protected/userstore/editar", newUserData, {
                 headers: { Authorization: `${localStorage.getItem("token")}` }
             });
             setUserData(response.data.userData);
@@ -98,11 +98,11 @@ const Dados = () => {
         fetchData();
     }, [username]);
 
-    useEffect(() => {
-        if (userData) {
-            fetchMetrics();
-        }
-    }, [userData]);
+    // useEffect(() => {
+    //     if (userData) {
+    //         fetchMetrics();
+    //     }
+    // }, [userData]);
 
     return (
         <div className="father-dados">
@@ -129,7 +129,7 @@ const Dados = () => {
                         </div>
                     </div>
 
-                    <h2 className="title-estado">Seu estado atual:</h2>
+                    <h2 className="title-estado"></h2>
                     <div className="item">
                         {dobrascutaneas.slice(0, 1).map((dobra) => (
                             <ul key={dobra._id}>

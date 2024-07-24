@@ -1,0 +1,173 @@
+    #img{
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            width: 28%;
+        }
+        img{
+            display: flex;
+            text-align: center;
+        }
+
+        #nomeAluno{
+            margin-top: -1.3%;
+        }
+    /*ocuta botão refazer*/
+    #btn_refazerprova{
+        display: none;
+    }
+    /*deixa a mostra botão finalizar prova*/
+    #btn_corrigir{
+        display: null;
+        align-items: center;
+    }
+    h3 {
+        text-align: center;
+    }
+    
+    #divbotao{
+        text-align: center;
+    }
+    
+    button{
+        border-radius: 5px;
+    }
+    
+    #button_imprimir{
+        display: null;
+    }
+    #btn_certificado{
+            font-size: 20px;
+            font-weight: bold;
+    }
+    
+    #div-aprovado{
+        align-items: center;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #aprovado_nome{
+        margin-top: -10px;
+    }
+
+    #aprovado-cpf{
+        margin-top: -10px;
+    }
+
+    #questionario-img{
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #questionario-father{
+        margin: 20px;
+    }
+
+    #nameProva{
+        text-align: center;
+    }
+
+    #popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000; /* Garante que o popup fique sobre outros elementos */
+    }
+    
+    #popup-content {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        width: 300px;
+        text-align: center;
+    }
+    
+    .inputs {
+        
+        display: flex;
+        margin: 1px;
+        padding: 8px;
+        width: 80%;
+    }
+
+    #prova-father{
+        padding-bottom: 20px;
+    }
+    
+    button {
+        margin-top: 10px;
+        padding: 10px;
+        background: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background: #0056b3;
+    }
+    
+
+    @media print {
+            body * {
+                visibility: visible;
+            }
+            #printable, #printable * {
+                visibility: visible;
+                
+            }
+            #printable {
+                position: fixed;
+                left: 0;
+                top: 0;
+            }
+            button{
+                visibility: hidden;
+            }
+            input.button {
+                visibility: hidden;
+            }
+            form{
+                visibility: visible;
+            }
+            #btn_refazerprova{
+                visibility: hidden;
+            }
+            #Escolha{
+                visibility: hidden;
+            }
+            #conteudoAprovado{
+                visibility: hidden;
+            }
+            #parabens{
+                visibility: hidden;
+            }
+            #naoprecisa{
+                visibility: hidden;
+            }
+            
+    }
+    @media (max-width:400px) {
+            #nome_aluno{
+            margin: 10px;
+            width: 200px;
+            }
+
+            #cpf_aluno{
+                width: 200px;
+            }
+
+            #nomeAluno{
+            margin-top: -5%;
+            }
+        }

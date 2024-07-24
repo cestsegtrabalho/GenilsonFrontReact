@@ -14,7 +14,7 @@ const History = () => {
     // Pega os dados da loja
     const fetchLoja = async () => {
         try {
-            const responseUser = await axios.get(`https://api.fittreinoapp.com/${username}`);
+            const responseUser = await axios.get(`https://api.cestsegtrabalho.com.br/${username}`);
             setUserData(responseUser.data);
         } catch (error) {
             console.error("Erro ao buscar os dados da loja: ", error);
@@ -25,7 +25,7 @@ const History = () => {
     // Pega as perimetrias do usuário
     const fetchPerimetrias = async () => {
         try {
-            const responsePerimetrias = await axios.get(`https://api.fittreinoapp.com/perimetria/${userData._id}`);
+            const responsePerimetrias = await axios.get(`https://api.cestsegtrabalho.com.br/perimetria/${userData._id}`);
             setPerimetrias(responsePerimetrias.data.reverse());
         } catch (error) {
             console.error("Erro ao buscar as perimetrias do usuário: ", error);
@@ -35,7 +35,7 @@ const History = () => {
     // Pega as dobras cutâneas do usuário
     const fetchDobrasCutaneas = async () => {
         try {
-            const responseDobrasCutaneas = await axios.get(`https://api.fittreinoapp.com/dobrascutaneas/${userData._id}`);
+            const responseDobrasCutaneas = await axios.get(`https://api.cestsegtrabalho.com.br/dobrascutaneas/tudo`);
             setDobrasCutaneas(responseDobrasCutaneas.data.reverse());
         } catch (error) {
             console.error("Erro ao buscar as dobras cutâneas do usuário: ", error);
@@ -47,10 +47,7 @@ const History = () => {
     }, [username]);
 
     useEffect(() => {
-        if (userData) {
-            fetchPerimetrias();
             fetchDobrasCutaneas();
-        }
     }, [userData]);
 
     const handleShowMoreDobra = (dobra) => {
@@ -70,29 +67,20 @@ const History = () => {
                     {/* Exibir as dobras cutâneas */}
                     
                     <div className="item-history">
-                    <h3>Dobras Cutâneas</h3>
+                    <h4>Provas feitas recentemente</h4>
                         {dobrascutaneas.map((dobra) => (
                             <div key={dobra._id}>
                                 {/* Exibir os dados das dobras cutâneas */}
                                 {/* Exemplo: */}
                                 <p><b>{moment(dobra.createdAt).format('DD/MM/YYYY')}</b> </p>
-                                <p><b>% de Gordura:</b> {dobra.resultadopercentualdegordura}%</p>
-                                <p><b>Peso atual:</b> {dobra.pesoatual}kg</p>
-                                
+                                <p><b>Prova:</b> {dobra.abdominal}</p>
+                                <p><b>Aluno:</b> {dobra.subescapular}</p> 
                                 {/* Adicionando condição para mostrar mais dados quando o botão for clicado */}
                                 {selectedDobra === dobra && (
                                     <>
-                                    <p><b>Peitoral:</b> {dobra.peitoral}</p>
-                                    <p><b>Axilar Média:</b> {dobra.axilarmedia}</p>
-                                    <p><b>Triciptal:</b> {dobra.triciptal}</p>
-                                    <p><b>Subescapular:</b> {dobra.subescapular}</p>
-                                    <p><b>Abdominal:</b> {dobra.abdominal}</p>
-                                    <p><b>Suprailiaca:</b> {dobra.suprailiaca}</p>
-                                    <p><b>Coxa:</b> {dobra.coxa}</p>
-                                    <p><b>Biciptal:</b> {dobra.biciptal}</p>
-                                    <p><b>Panturrilha Média:</b> {dobra.panturrilhaMedia}</p>
-                                    <p><b>Somatório das dobras:</b> {dobra.somatoriodasdobras}</p>
-                                    <p><b>Idade:</b> {dobra.idade}</p>
+                                        <p><b>email:</b> {dobra.peitoral}</p>
+                                        <p><b>tel:</b> {dobra.triciptal}</p>        
+                                    
 
                                     </>
                                 )}
@@ -106,12 +94,10 @@ const History = () => {
 
                     {/* Exibir as perimetrias */}
                     
-                    <div className="item-history">
-                    <h3>Medidas</h3>
+                    {/* <div className="item-history">
+                    <h3></h3>
                         {perimetrias.map((perimetria) => (
                             <div key={perimetria._id}>
-                                
-                                {/* Adicionando condição para mostrar mais dados quando o botão for clicado */}
                                 <p><b>{moment(perimetria.createdAt).format('DD/MM/YYYY')}</b> </p>
                                 {selectedPerimetria === perimetria && (
                                     <>
@@ -128,15 +114,15 @@ const History = () => {
                                     <p><b>Quadril:</b> {perimetria.quadril}cm</p>
                                     </>
                                 )}
-                                {/* Botão para mostrar mais ou menos dados */}
+                               
                                 <button onClick={() => handleShowMorePerimetria(perimetria)} className="button-history">
                                     {selectedPerimetria === perimetria ? "Mostrar Menos" : "Mostrar Mais"}
                                 </button>
                             </div>
                         ))}
-                    </div>
-
+                    </div> */}
                 </div>
+                
             ) : (
                 <p>Carregando dados do usuário...</p>
             )}

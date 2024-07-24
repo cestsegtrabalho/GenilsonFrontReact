@@ -3,37 +3,50 @@ import { FaHome, FaHistory, FaDumbbell } from 'react-icons/fa'; // Importando í
 import DisplayTreinos from "./displaytreinos";
 import TreinoGym from "./treinogym";
 import CreateTreino from "./createTreino";
+import { BsBook } from "react-icons/bs";
+import Questionario from "./questionario";
+import CreateCurso from "./createCurso";
+import Provas from "./provas";
+import Cursos from "./curso";
 
 const TreinoCompleto = () => {
     const [componente, setComponente] = useState();
     const [userData, setUserData] = useState(null);
 
-    const treinoProvisorio = () => {
-        setComponente(<TreinoGym />);
+    const cursos = () => {
+        setComponente(<Cursos />);
     }
 
-    const treinoAcademia = () => {
-        setComponente(<DisplayTreinos />);
+    const provas = () => {
+        setComponente(<Provas />);
     }
 
-    const criarTreino = () => {
+    const createCurso = () => {
+        setComponente(<CreateCurso />);
+    }
+
+    const criarQuiz = () => {
         setComponente(<CreateTreino />);
     }
 
     return (
         <div className="father-treino">
             <div className="children-Treino-Completo">
-                <button className="bottom-bar-button-treino" onClick={treinoAcademia}>
-                    <FaDumbbell className="icon" />
-                    <span>Seus Treinos</span>
+                <button className="bottom-bar-button-treino" onClick={cursos}>
+                    <BsBook className="icon" />
+                    <span>Seus Novos Cursos</span>
                 </button>
-                <button className="bottom-bar-button-treino" onClick={treinoProvisorio}>
-                    <FaDumbbell className="icon" />
-                    <span>Treino Provisório</span>
+                <button className="bottom-bar-button-treino" onClick={provas}>
+                    <BsBook className="icon" />
+                    <span>Suas Novas Provas</span>
                 </button>
-                <button className="bottom-bar-button-treino" onClick={criarTreino}>
-                    <FaDumbbell className="icon" />
-                    <span>Criar Treino</span>
+                <button className="bottom-bar-button-treino" onClick={createCurso}>
+                    <BsBook className="icon" />
+                    <span>Criar Curso</span>
+                </button>
+                <button className="bottom-bar-button-treino" onClick={criarQuiz}>
+                    <BsBook className="icon" />
+                    <span>Criar Prova</span>
                 </button>
             </div>
             <div className="componente-container">

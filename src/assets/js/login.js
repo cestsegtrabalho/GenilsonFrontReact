@@ -18,7 +18,7 @@ const Login = () => {
     const [message, setMessage] = useState('')
 
     const handleLogin = () => {
-      axios.post("https://api.fittreinoapp.com/user/login", { email, password })
+      axios.post("https://api.cestsegtrabalho.com.br/user/login", { email, password })
         .then((response) => {
           const { token, id, name, username, phone } = response.data;
           setToken(token);
@@ -68,7 +68,7 @@ const Login = () => {
               /><br />
             </div>
             <button onClick={handleLogin} className="btn-login">ENTRAR</button>
-            <p className="esqueciSenha">Esqueci senha. <a className="redefinir" onClick={RedefinirPage}>Redefinir senha</a></p>
+            {/* <p className="esqueciSenha">Esqueci senha. <a className="redefinir" onClick={RedefinirPage}>Redefinir senha</a></p> */}
             {message && <p>{message}</p>}
           </div>
         </div>

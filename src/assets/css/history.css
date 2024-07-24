@@ -15,7 +15,7 @@
 }
 
 .item-history {
-    width: calc(50% - 20px); /* Ajuste para garantir que haja espaço suficiente para 2 itens por linha */
+    width: calc(100% - 20px); /* Ajuste para garantir que haja espaço suficiente para 2 itens por linha */
     min-width: 170px; /* Define uma largura mínima para os itens */
     max-width: 90%; /* Define uma largura máxima para os itens */
     border: 1px solid;
