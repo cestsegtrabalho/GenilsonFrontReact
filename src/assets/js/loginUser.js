@@ -59,15 +59,17 @@ const LoginUser = () => {
             <h2>Login</h2>
             <div className="textfield">
               <input
-                  type="text"
+                  type="email"
                   placeholder="Email"
+                  autoComplete="email"
                   onChange={(e) => setEmail(e.target.value)}
               /><br />
             </div>
             <div className="textfield">
               <input
-                  type="password"
+                  type="text"
                   placeholder="Senha"
+                  autoComplete="current-password"
                   onChange={(e) => setPassword(e.target.value)}
               /><br />
             </div>

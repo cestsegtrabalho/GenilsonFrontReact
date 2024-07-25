@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import CompartilharSimples from "./CompartilharSimples";
 
 const Provas = () => {
     const [provas, setProvas] = useState([]);
@@ -7,6 +8,7 @@ const Provas = () => {
     const [editTitulo, setEditTitulo] = useState('');
     const [editUrlProva, setEditUrlProva] = useState('');
     const [questoes, setQuestoes] = useState({}); // Alterado para suportar diferentes arrays de questões
+    const [nameUrl, setNameUrl] = useState()
 
     useEffect(() => {
         fetchProvas();
@@ -16,6 +18,8 @@ const Provas = () => {
         try {
             const response = await axios.get('https://api.cestsegtrabalho.com.br/treino/buscar');
             setProvas(response.data);
+            setNameUrl(response.data.nameUrl)
+            console.log('teste', nameUrl)
         } catch (error) {
             console.error('Erro ao buscar provas:', error);
         }
@@ -178,6 +182,8 @@ const Provas = () => {
                                 <button onClick={() => handleEdit(prova)}>Editar</button>
                                 <button onClick={() => handleDelete(prova._id)}>Deletar</button>
                                 <button onClick={() => handleShare(prova.linkUrl)}>Compartilhar</button>
+                                <CompartilharSimples linkUrl={prova.linkUrl} /> {/* Usar o componente */}
+
                             </div>
                         )}
                     </li>

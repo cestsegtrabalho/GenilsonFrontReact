@@ -39,7 +39,7 @@ const CreateCurso = () => {
                 headers: { Authorization: `${token}` }
             };
 
-            const metadeUrl = 'http://localhost:3000/curso/';
+            const metadeUrl = 'https://app.cestsegtrabalho.com.br/curso/';
             const linkUrl = metadeUrl + nameUrl;
             const cursoData = { titulo, conteudo, nameUrl, linkUrl };
             

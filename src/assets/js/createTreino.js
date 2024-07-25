@@ -79,8 +79,7 @@ const CreateTreino = () => {
             const UserStoreid = localStorage.getItem('userStoreid');
             const username = localStorage.getItem('AlunoUsername');
 
-
-            const metadeUrl = 'http://localhost:3000/prova/'
+            const metadeUrl = 'https://app.cestsegtrabalho.com.br/prova/'
             const linkUrl = metadeUrl + nameUrl
             const treinoData = { treino1, treino2, treino3, treino4, treino5, treino6, treino7, userid: Userid, nameUrl, nameProva, linkUrl }; // Inclui nameUrl
             //createUrlProva()

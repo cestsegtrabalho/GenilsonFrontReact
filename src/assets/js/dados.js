@@ -20,6 +20,7 @@ const Dados = () => {
         phone: "",
         email: "",
         nameperson: "",
+        password: "",
     });
 
     // Fetch de dados do usuário e permissões
@@ -70,6 +71,7 @@ const Dados = () => {
             name: userData.name,
             phone: userData.phone,
             email: userData.email,
+            password: userData.password, // Inicia o campo de senha vazio
         });
     };
 
@@ -166,6 +168,7 @@ const Dados = () => {
                         <input type="text" name="name" value={newUserData.name} onChange={handleInputChange} placeholder="Novo Nome" className="input-account" />
                         <input type="text" name="phone" value={newUserData.phone} onChange={handleInputChange} placeholder="Novo Telefone" className="input-account" />
                         <input type="text" name="email" value={newUserData.email} onChange={handleInputChange} placeholder="Novo Email" className="input-account" />
+                        <input type="password" name="password" value={newUserData.password} onChange={handleInputChange} placeholder="Nova Senha" className="input-account" /> {/* Campo de senha */}
                         <button className="salvar-account" onClick={handleUpdateUserData}>Salvar</button>
                         <button className="cancel-account" onClick={handleCancelEdit}>Cancelar</button>
                     </div>

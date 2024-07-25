@@ -36,6 +36,7 @@ const Curso = () => {
                 <img id="img" src={logo} alt="Logo" />
             </div>
             <h1>{curso.titulo}</h1>
+            <p>{curso.conteudo}</p>
             <div dangerouslySetInnerHTML={{ __html: curso.conteudo }} />
         </div>
     );

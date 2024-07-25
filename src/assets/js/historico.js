@@ -72,7 +72,7 @@ const History = () => {
                             <div key={dobra._id}>
                                 {/* Exibir os dados das dobras cutâneas */}
                                 {/* Exemplo: */}
-                                <p><b>{moment(dobra.createdAt).format('DD/MM/YYYY')}</b> </p>
+                                <p><b>{moment(dobra.createdAt).format('DD/MM/YYYY HH:mm:ss')}</b> </p>
                                 <p><b>Prova:</b> {dobra.abdominal}</p>
                                 <p><b>Aluno:</b> {dobra.subescapular}</p> 
                                 {/* Adicionando condição para mostrar mais dados quando o botão for clicado */}

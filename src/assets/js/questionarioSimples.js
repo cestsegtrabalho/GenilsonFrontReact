@@ -4,23 +4,12 @@ import { useParams } from "react-router-dom";
 import Aprovado from "./aprovado";
 import logo from '../img/logo.png';
 
-
-const Prova = () => {
+const ProvaSimples = () => {
     const { nameUrl } = useParams();
     const [data, setData] = useState(null);
     const [respostas, setRespostas] = useState({});
     const [total, setTotal] = useState(0);
     const [componente, setComponente] = useState('');
-    const [showPopup, setShowPopup] = useState(true);
-
-    // Estado para dados do formulário
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [whatsapp, setWhatsapp] = useState('');
-    const [cpf, setCpf] = useState('');
-    const [curso, setCurso] = useState('');
-    const [nome_empresa, setNomeEmpresa] = useState('');
-    const [dataGenilson, setDataGenilson] = useState('');
     const [nomeCurso, setnomeCurso] = useState('')
 
     const fetchNameUrl = async () => {
@@ -43,53 +32,6 @@ const Prova = () => {
 
     const TrocarComponente = () => {
         setComponente(<Aprovado />);
-    };
-
-    const enviarDados = async () => {
-        try {
-            const response = await axios.post('https://api.cestsegtrabalho.com.br/dobrascutaneas/criar', {
-                subescapular: name,
-                peitoral: email,
-                triciptal: whatsapp,
-                abdominal: nomeCurso
-            });
-            console.log('Perimetria cadastrada com sucesso');
-        } catch (error) {
-            console.error('Erro ao criar Perimetria: ', error);
-        }
-    };
-
-    const EnviarEmail = async () => {
-        const ebody = `
-        <div><img src="https://cestsegtrabalho.com.br/wp-content/uploads/2022/09/logo-e1663851774609.png" width="100%"></div>
-        <br><br>
-        <h3>O aluno ${name} concluiu a prova de ${nomeCurso} conforme treinamento com nota 10</h3>
-        <br><br>
-        <h3 style="margin: 0%;">Nome do aluno:</h3>${name}
-        <br><br>
-        <h3>Nome do curso: BOBCAT</h3>
-        <h3 style="margin: 0%;">Whatsapp do aluno:</h3>${whatsapp}
-        <br><br>
-        <h3 style="margin: 0%;">Email do aluno: </h3>${email}
-        <br><br>
-        <h3 style="margin: 0%;">CPF do aluno: </h3>${cpf}
-        <br><br>
-        <h3 style="margin: 0%;">Nome da Empresa (Opcional): </h3>${nome_empresa}
-        <br><br>
-        <h3 style="font-weight: bold;">Data: </h3>${dataGenilson};
-        `;
-
-        window.Email.send({
-            SecureToken: "58bc9bda-20b7-472d-9522-6edc923b7f69",
-            To: 'cestsegtrabalho@gmail.com',
-            From: "cestsegtrabalho@gmail.com",
-            Subject: "O aluno concluiu a prova",
-            Body: ebody
-        }).then(
-            //message => alert("Email enviado com sucesso!")
-        ).catch(
-            error => alert("Erro ao enviar o email: " + error)
-        );
     };
 
     const corrigir = () => {
@@ -121,20 +63,6 @@ const Prova = () => {
         alert(`Você foi ${resultado}.`);
     };
 
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Verifica se todos os campos estão preenchidos
-        if (name && email && whatsapp && cpf && dataGenilson) {
-            setShowPopup(false); // Fecha o popup
-            EnviarEmail();
-            enviarDados();
-        } else {
-            alert("Por favor, preencha todos os campos.");
-        }
-    };
-
     useEffect(() => {
         fetchNameUrl();
     }, [nameUrl]);
@@ -144,57 +72,6 @@ const Prova = () => {
             <div id="questionario-img">
                 <img id="img" src={logo} alt="Logo" />
             </div>
-
-            {showPopup && (
-                <div id="popup">
-                    <div id="popup-content">
-                        <h2>Preencha seus dados</h2>
-                        <form onSubmit={handleSubmit}>
-                            <input 
-                                type="text" 
-                                placeholder="Nome" 
-                                value={name} 
-                                onChange={(e) => setName(e.target.value)} 
-                                required 
-                            />
-                            <input 
-                                type="email" 
-                                placeholder="Email" 
-                                value={email} 
-                                onChange={(e) => setEmail(e.target.value)} 
-                                required 
-                            />
-                            <input 
-                                type="text" 
-                                placeholder="WhatsApp" 
-                                value={whatsapp} 
-                                onChange={(e) => setWhatsapp(e.target.value)} 
-                                required 
-                            />
-                            <input 
-                                type="text" 
-                                placeholder="CPF" 
-                                value={cpf} 
-                                onChange={(e) => setCpf(e.target.value)} 
-                                required 
-                            />
-                            <input 
-                                type="text" 
-                                placeholder="Nome da Empresa (Opcional)" 
-                                value={nome_empresa} 
-                                onChange={(e) => setNomeEmpresa(e.target.value)} 
-                            />
-                            <input 
-                                type="date" 
-                                value={dataGenilson} 
-                                onChange={(e) => setDataGenilson(e.target.value)} 
-                                required 
-                            />
-                            <button type="submit">Enviar</button>
-                        </form>
-                    </div>
-                </div>
-            )}
 
             {componente}
             {data && (
@@ -304,4 +181,4 @@ const Prova = () => {
     );
 }
 
-export default Prova;
+export default ProvaSimples;
