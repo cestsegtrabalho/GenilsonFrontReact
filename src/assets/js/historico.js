@@ -73,13 +73,14 @@ const History = () => {
                                 {/* Exibir os dados das dobras cutâneas */}
                                 {/* Exemplo: */}
                                 <p><b>{moment(dobra.createdAt).format('DD/MM/YYYY HH:mm:ss')}</b> </p>
-                                <p><b>Prova:</b> {dobra.abdominal}</p>
+                                <p><b></b> {dobra.abdominal}</p>
                                 <p><b>Aluno:</b> {dobra.subescapular}</p> 
                                 {/* Adicionando condição para mostrar mais dados quando o botão for clicado */}
                                 {selectedDobra === dobra && (
                                     <>
                                         <p><b>email:</b> {dobra.peitoral}</p>
-                                        <p><b>tel:</b> {dobra.triciptal}</p>        
+                                        <p><b>tel:</b> {dobra.triciptal}</p>
+                                        <p><b>CPF:</b> {dobra.coxa}</p>            
                                     
 
                                     </>

@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const CreateCurso = () => {
     const navigate = useNavigate();
@@ -10,17 +10,25 @@ const CreateCurso = () => {
     const [conteudo, setConteudo] = useState('');
     const [nameUrl, setNameUrl] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(null);
+    const [token, setToken] = useState(null); // Adiciona o estado para armazenar o token
 
     const fetchDataToken = async () => {
         try {
-            const responseUserToken = await axios.get(`https://api.cestsegtrabalho.com.br/protected/user/buscar`, {
-                headers: { Authorization: `${localStorage.getItem("token")}` }
-            });
-            setIsLoggedIn(true);
-            console.log('Rota acessada com sucesso');
+            const savedToken = localStorage.getItem("token");
+            if (savedToken) {
+                setToken(savedToken); // Salva o token no estado
+                const responseUserToken = await axios.get(`https://api.cestsegtrabalho.com.br/protected/user/buscar`, {
+                    headers: { Authorization: `${savedToken}` }
+                });
+                setIsLoggedIn(true);
+                console.log('Rota acessada com sucesso');
+            } else {
+                console.error('Token não encontrado');
+                setIsLoggedIn(false);
+            }
         } catch (error) {
             setIsLoggedIn(false);
-            console.error('Erro ao acessar rota');
+            console.error('Erro ao acessar rota', error);
         }
     };
 
@@ -29,27 +37,22 @@ const CreateCurso = () => {
     }, []);
 
     const createCurso = async () => {
-        try {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                console.error('Token não encontrado, faça login novamente.');
-                return;
-            }
-            const config = {
-                headers: { Authorization: `${token}` }
-            };
+        if (!token) {
+            console.error('Token não encontrado, faça login novamente.');
+            return;
+        }
+        const config = {
+            headers: { Authorization: `${token}` }
+        };
 
-            const metadeUrl = 'https://app.cestsegtrabalho.com.br/curso/';
-            const linkUrl = metadeUrl + nameUrl;
-            const cursoData = { titulo, conteudo, nameUrl, linkUrl };
-            
-            try {
-                await axios.post('https://api.cestsegtrabalho.com.br/curso/criar', cursoData, config);
-                console.log('Curso cadastrado com sucesso');
-                window.location.reload()
-            } catch (error) {
-                console.error('Erro ao criar curso: ', error);
-            }
+        const metadeUrl = 'https://app.cestsegtrabalho.com.br/curso/';
+        const linkUrl = metadeUrl + nameUrl;
+        const cursoData = { titulo, conteudo, nameUrl, linkUrl };
+
+        try {
+            await axios.post('https://api.cestsegtrabalho.com.br/curso/criar', cursoData, config);
+            console.log('Curso cadastrado com sucesso');
+            window.location.reload();
         } catch (error) {
             console.error('Erro ao criar curso: ', error);
         }
@@ -76,9 +79,10 @@ const CreateCurso = () => {
                 </div>
                 <div>
                     <label htmlFor="conteudo" className="labelnome-createCurso">Conteúdo do Curso:</label>
-                    <ReactQuill
-                        value={conteudo}
-                        onChange={setConteudo}
+                    <CKEditor
+                        editor={ClassicEditor}
+                        data={conteudo}
+                        onChange={(event, editor) => setConteudo(editor.getData())}
                         placeholder="Digite o conteúdo do curso"
                         className="textarea-createCurso"
                         required

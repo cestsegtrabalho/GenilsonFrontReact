@@ -51,7 +51,8 @@ const Prova = () => {
                 subescapular: name,
                 peitoral: email,
                 triciptal: whatsapp,
-                abdominal: nomeCurso
+                abdominal: nomeCurso,
+                coxa: cpf
             });
             console.log('Perimetria cadastrada com sucesso');
         } catch (error) {

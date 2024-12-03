@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import 'react-quill/dist/quill.snow.css'; // apagar
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const Cursos = () => {
     const [cursos, setCursos] = useState([]);
@@ -64,7 +66,7 @@ const Cursos = () => {
     };
 
     return (
-        <div>
+        <div id='cursos-father'>
             <h1>Cursos</h1>
             <ul>
                 {cursos.map(curso => (
@@ -78,9 +80,10 @@ const Cursos = () => {
                                     onChange={(e) => setEditTitulo(e.target.value)}
                                     placeholder="Título do Curso"
                                 />
-                                <ReactQuill
-                                    value={editConteudo}
-                                    onChange={setEditConteudo}
+                                <CKEditor
+                                    editor={ClassicEditor}
+                                    data={editConteudo}
+                                    onChange={(event, editor) => setEditConteudo(editor.getData())}
                                     placeholder="Conteúdo do Curso"
                                 />
                                 <label>Escreva a URL do curso com letras minúsculas</label>

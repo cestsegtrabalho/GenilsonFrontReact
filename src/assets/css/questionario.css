@@ -56,15 +56,7 @@
         margin-top: -10px;
     }
 
-    #questionario-img{
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-    }
 
-    #questionario-father{
-        margin: 20px;
-    }
 
     #nameProva{
         text-align: center;
@@ -101,6 +93,9 @@
 
     #prova-father{
         padding-bottom: 20px;
+        word-wrap: break-word; /* Quebra palavras longas */
+        word-break: break-word; /* Quebra palavras longas para garantir que elas não causem overflow */
+        white-space: normal; /* Permite quebras de linha normais */
     }
     
     button {
@@ -116,6 +111,60 @@
     button:hover {
         background: #0056b3;
     }
+
+    .div-inputCurso{
+        padding-bottom: 25px;
+    }
+
+    .ql-editor {
+        color: #000; /* Cor preta para o texto */
+        background-color: #fff; /* Fundo branco para a área de edição */
+    }
+    
+    .ql-toolbar {
+        border-color: #ddd; /* Adicionar uma borda clara para a barra de ferramentas */
+    }
+
+    .ql-container, .ql-editor {
+        background-color: #ffffff; /* Fundo branco */
+        color: #000000; /* Texto preto */
+    }
+
+    #questionario-img{
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    #questionario-father{
+        margin: 20px;
+    }
+
+    #conteudo-cursoFather{
+        padding: 20px;
+        word-wrap: break-word; /* Quebra palavras longas */
+        word-break: break-word; /* Quebra palavras longas para garantir que elas não causem overflow */
+        white-space: normal; /* Permite quebras de linha normais */
+    }
+
+    #conteudoCurso-titulo{
+        text-align: center;
+    }
+
+    #conteudo-text{
+        font-size: 12px;
+        font-weight: bold;
+        margin: -2px;
+    }
+    
+    #cursos-father{
+        word-wrap: break-word; /* Quebra palavras longas */
+        word-break: break-word; /* Quebra palavras longas para garantir que elas não causem overflow */
+        white-space: normal; /* Permite quebras de linha normais */
+    }
+    
     
 
     @media print {
