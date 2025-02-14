@@ -12,6 +12,7 @@ const Prova = () => {
     const [total, setTotal] = useState(0);
     const [componente, setComponente] = useState('');
     const [showPopup, setShowPopup] = useState(true);
+    const [senha, setSenha] = useState('');
 
     // Estado para dados do formulário
     const [name, setName] = useState('');
@@ -32,6 +33,15 @@ const Prova = () => {
             console.error(error.response?.data?.message || 'Erro ao buscar dados');
         }
     };
+
+    // Validação da senha
+    function validarSenha() {
+        if (senha !== 'Cest2p') {
+            alert("Senha incorreta! Tente novamente.");
+            return false; // Impede o envio do formulário
+        }
+        return true; // Permite o envio se a senha estiver correta
+    }
 
     const handleOptionChange = (event) => {
         const { name, id, value } = event.target;
@@ -126,6 +136,9 @@ const Prova = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!validarSenha()) {
+            return; // Interrompe o envio se a senha estiver errada
+        }
         // Verifica se todos os campos estão preenchidos
         if (name && email && whatsapp && cpf && dataGenilson) {
             setShowPopup(false); // Fecha o popup
@@ -191,6 +204,13 @@ const Prova = () => {
                                 onChange={(e) => setDataGenilson(e.target.value)} 
                                 required 
                             />
+                            <input 
+                                type="text" 
+                                placeholder="Digite a senha" 
+                                value={senha} 
+                                onChange={(e) => setSenha(e.target.value)} 
+                                required 
+                            /><br></br>
                             <button type="submit">Enviar</button>
                         </form>
                     </div>

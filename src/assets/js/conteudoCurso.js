@@ -16,6 +16,7 @@ const Curso = () => {
     const [nome_empresa, setNomeEmpresa] = useState('');
     const [dataGenilson, setDataGenilson] = useState('');
     const [showPopup, setShowPopup] = useState(true);
+    const [senha, setSenha] = useState('');
 
     // Função para buscar dados do curso
     const fetchCurso = async () => {
@@ -27,6 +28,15 @@ const Curso = () => {
             console.error('Erro ao buscar os dados do curso:', error);
         }
     };
+
+    // Validação da senha
+    function validarSenha() {
+        if (senha !== 'Cest2e') {
+            alert("Senha incorreta! Tente novamente.");
+            return false; // Impede o envio do formulário
+        }
+        return true; // Permite o envio se a senha estiver correta
+    }
 
     // Funções para enviar dados e email
     const enviarDados = async () => {
@@ -79,6 +89,9 @@ const Curso = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!validarSenha()) {
+            return; // Interrompe o envio se a senha estiver errada
+        }
         if (name && email && whatsapp && cpf && dataGenilson) {
             setShowPopup(false); // Fecha o popup
             EnviarEmail();
@@ -161,6 +174,14 @@ const Curso = () => {
                                 onChange={(e) => setDataGenilson(e.target.value)} 
                                 required 
                             />
+                            
+                            <input 
+                                type="text" 
+                                placeholder="Digite a senha" 
+                                value={senha} 
+                                onChange={(e) => setSenha(e.target.value)} 
+                                required 
+                            /><br></br>
                             <button type="submit">Enviar</button>
                         </form>
                     </div>
