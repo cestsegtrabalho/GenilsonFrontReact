@@ -36,7 +36,7 @@ const Prova = () => {
 
     // Validação da senha
     function validarSenha() {
-        if (senha !== 'Cest2p') {
+        if (senha !== 'Cest3p') {
             alert("Senha incorreta! Tente novamente.");
             return false; // Impede o envio do formulário
         }
