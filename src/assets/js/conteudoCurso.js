@@ -28,6 +28,7 @@ const Curso = () => {
             console.error('Erro ao buscar os dados do curso:', error);
         }
     };
+    
 
     // Validação da senha
     function validarSenha() {

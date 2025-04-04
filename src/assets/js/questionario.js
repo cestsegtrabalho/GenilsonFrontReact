@@ -33,6 +33,7 @@ const Prova = () => {
             console.error(error.response?.data?.message || 'Erro ao buscar dados');
         }
     };
+    
 
     // Validação da senha
     function validarSenha() {
