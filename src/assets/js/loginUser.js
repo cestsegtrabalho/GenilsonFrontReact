@@ -20,37 +20,32 @@ const LoginUser = () => {
     const [message, setMessage] = useState('')
 
     const handleLogin = () => {
-      const redirectPath = location.state?.from || `/cestsegtrabalho`; // Obtém o caminho de redirecionamento ou "/" como padrão
-      navigate(redirectPath);
-    }
-
-    // const handleLogin = () => {
-    //   axios.post("https://api.cestsegtrabalho.com.br/user/login", { email, password })
-    //     .then((response) => {
-    //       const { token, id, name, username, phone } = response.data;
-    //       setToken(token);
-    //       setUserEmail(email);
-    //       setUserId(id);
-    //       setUserName(name);
-    //       setUserUsername(username);
-    //       setUserPhone(phone);
-    //       setIsAuthenticated(true);
+      axios.post("https://api.cestsegtrabalho.com.br/user/login", { email, password })
+        .then((response) => {
+          const { token, id, name, username, phone } = response.data;
+          setToken(token);
+          setUserEmail(email);
+          setUserId(id);
+          setUserName(name);
+          setUserUsername(username);
+          setUserPhone(phone);
+          setIsAuthenticated(true);
           
-    //       localStorage.setItem('token', token);
-    //       localStorage.setItem('userEmail', email);
-    //       localStorage.setItem('AlunoUserid', id);
-    //       localStorage.setItem('AlunoUserName', name);
-    //       localStorage.setItem('AlunoUsername', username);
-    //       localStorage.setItem('userPhone', phone);
+          localStorage.setItem('token', token);
+          localStorage.setItem('userEmail', email);
+          localStorage.setItem('AlunoUserid', id);
+          localStorage.setItem('AlunoUserName', name);
+          localStorage.setItem('AlunoUsername', username);
+          localStorage.setItem('userPhone', phone);
 
-    //       const redirectPath = location.state?.from || `/${username}`; // Obtém o caminho de redirecionamento ou "/" como padrão
-    //       navigate(redirectPath);
-    //       setMessage(response.data.message)
-    //     })
-    //     .catch((error) => {
-    //       setMessage(error.response.data.message)
-    //     });
-    // };
+          const redirectPath = location.state?.from || `/${username}`; // Obtém o caminho de redirecionamento ou "/" como padrão
+          navigate(redirectPath);
+          setMessage(response.data.message)
+        })
+        .catch((error) => {
+          setMessage(error.response.data.message)
+        });
+    };
 
     const RedefinirPage = () => {
       navigate('/redefinir-senha')
@@ -62,7 +57,7 @@ const LoginUser = () => {
           <CreateUser/> */}
           <div className="card-login">
             <h2>Login</h2>
-            {/* <div className="textfield">
+            <div className="textfield">
               <input
                   type="email"
                   placeholder="Email"
@@ -77,7 +72,7 @@ const LoginUser = () => {
                   autoComplete="current-password"
                   onChange={(e) => setPassword(e.target.value)}
               /><br />
-            </div> */}
+            </div>
             <button onClick={handleLogin} className="btn-login">ENTRAR</button>
             {/* <p className="esqueciSenha">Esqueci senha. <a className="redefinir" onClick={RedefinirPage}>Redefinir senha</a></p> */}
             {message && <p>{message}</p>}
