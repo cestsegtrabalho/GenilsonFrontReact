@@ -61,7 +61,7 @@ const LoginUser = () => {
           <CreateUser/> */}
           <div className="card-login">
             <h2>Login</h2>
-            <div className="textfield">
+            {/* <div className="textfield">
               <input
                   type="email"
                   placeholder="Email"
@@ -76,7 +76,7 @@ const LoginUser = () => {
                   autoComplete="current-password"
                   onChange={(e) => setPassword(e.target.value)}
               /><br />
-            </div>
+            </div> */}
             <button onClick={handleLogin} className="btn-login">ENTRAR</button>
             {/* <p className="esqueciSenha">Esqueci senha. <a className="redefinir" onClick={RedefinirPage}>Redefinir senha</a></p> */}
             {message && <p>{message}</p>}
