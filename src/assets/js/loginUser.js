@@ -21,6 +21,7 @@ const LoginUser = () => {
 
     const handleLogin = () => {
       const redirectPath = location.state?.from || `/cestsegtrabalho`; // Obtém o caminho de redirecionamento ou "/" como padrão
+      navigate(redirectPath);
     }
 
     // const handleLogin = () => {
