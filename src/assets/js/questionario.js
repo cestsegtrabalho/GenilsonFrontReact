@@ -34,7 +34,6 @@ const Prova = () => {
         }
     };
     
-
     // Validação da senha
     function validarSenha() {
         if (senha !== 'Cest4p') {
