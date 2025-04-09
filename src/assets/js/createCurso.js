@@ -8,6 +8,7 @@ const CreateCurso = () => {
     const navigate = useNavigate();
     const [titulo, setTitulo] = useState('');
     const [conteudo, setConteudo] = useState('');
+    const [urlvideo, setUrlvideo] = useState('')
     const [nameUrl, setNameUrl] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(null);
     const [token, setToken] = useState(null); // Adiciona o estado para armazenar o token
@@ -47,7 +48,7 @@ const CreateCurso = () => {
 
         const metadeUrl = 'https://app.cestsegtrabalho.com.br/curso/';
         const linkUrl = metadeUrl + nameUrl;
-        const cursoData = { titulo, conteudo, nameUrl, linkUrl };
+        const cursoData = { titulo, conteudo, nameUrl, linkUrl, urlvideo };
 
         try {
             await axios.post('https://api.cestsegtrabalho.com.br/curso/criar', cursoData, config);
@@ -73,6 +74,18 @@ const CreateCurso = () => {
                         value={titulo}
                         onChange={(e) => setTitulo(e.target.value)}
                         placeholder="Digite o título do curso"
+                        className='inputs'
+                        required
+                    />
+                </div>
+                <div>
+                    <label htmlFor="urlvideo" className="labelnome-createCurso">URL do video do Youtube (opcional):</label>
+                    <input
+                        type="text"
+                        id="titulo"
+                        value={urlvideo}
+                        onChange={(e) => setUrlvideo(e.target.value)}
+                        placeholder="Digite o link do youtube"
                         className='inputs'
                         required
                     />
