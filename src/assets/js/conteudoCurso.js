@@ -87,6 +87,16 @@ const Curso = () => {
         );
     };
 
+    const getYoutubeVideoId = (url) => {
+        if (!url) return null;
+    
+        const regex =
+            /(?:youtube\.com\/(?:embed\/|watch\?v=)|youtu\.be\/)([^\s&?]+)/;
+        const match = url.match(regex);
+        return match ? match[1] : null;
+    };
+    
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!validarSenha()) {
@@ -127,6 +137,20 @@ const Curso = () => {
             </div>
 
             <h1 id='conteudoCurso-titulo'>{curso.titulo}</h1>
+            {curso.urlvideo && getYoutubeVideoId(curso.urlvideo) && (
+            <div style={{ margin: '20px 0', textAlign: 'center' }}>
+                <iframe
+                    width="100%"
+                    height="315"
+                    src={`https://www.youtube.com/embed/${getYoutubeVideoId(curso.urlvideo)}`}
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                ></iframe>
+            </div>
+            )}
+
             <div dangerouslySetInnerHTML={{ __html: curso.conteudo }} />
 
             {showPopup && (
