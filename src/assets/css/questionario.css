@@ -95,6 +95,13 @@
         margin: 2px;
         padding: 8px;
         width: 100%;
+        color: #000;
+        font-weight: 900;
+    }
+
+    .input_date{
+        color: #000;
+        font-weight: 900;
     }
 
     #começar-btn{

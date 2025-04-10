@@ -199,7 +199,8 @@ const Prova = () => {
                                 onChange={(e) => setNomeEmpresa(e.target.value)} 
                             />
                             <input 
-                                type="date" 
+                                type="text" 
+                                placeholder="Data"
                                 value={dataGenilson} 
                                 onChange={(e) => setDataGenilson(e.target.value)} 
                                 required 
