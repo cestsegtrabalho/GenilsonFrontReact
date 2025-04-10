@@ -84,11 +84,22 @@
     }
     
     .inputs {
-        
         display: flex;
-        margin: 1px;
+        margin: 2px;
         padding: 8px;
-        width: 80%;
+        width: 100%;
+    }
+
+    input {
+        display: flex;
+        margin: 2px;
+        padding: 8px;
+        width: 100%;
+    }
+
+    #começar-btn{
+        width: 100%;
+        background-color: #000;
     }
 
     #prova-father{

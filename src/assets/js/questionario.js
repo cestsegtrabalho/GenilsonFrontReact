@@ -36,7 +36,7 @@ const Prova = () => {
     
     // Validação da senha
     function validarSenha() {
-        if (senha !== 'Cest4p') {
+        if (senha.trim() !== 'Cest4p') {
             alert("Senha incorreta! Tente novamente.");
             return false; // Impede o envio do formulário
         }
@@ -162,7 +162,7 @@ const Prova = () => {
             {showPopup && (
                 <div id="popup">
                     <div id="popup-content">
-                        <h2>Preencha seus dados</h2>
+                        <h2></h2>
                         <form onSubmit={handleSubmit}>
                             <input 
                                 type="text" 
@@ -211,7 +211,7 @@ const Prova = () => {
                                 onChange={(e) => setSenha(e.target.value)} 
                                 required 
                             /><br></br>
-                            <button type="submit">Enviar</button>
+                            <button type="submit" id="começar-btn">COMEÇAR PROVA</button>
                         </form>
                     </div>
                 </div>

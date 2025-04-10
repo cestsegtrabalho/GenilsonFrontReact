@@ -31,7 +31,7 @@ const Curso = () => {
 
     // Validação da senha
     function validarSenha() {
-        if (senha !== 'Cest4e') {
+        if (senha.trim() !== 'Cest4e') {
             alert("Senha incorreta! Tente novamente.");
             return false; // Impede o envio do formulário
         }
@@ -156,7 +156,7 @@ const Curso = () => {
             {showPopup && (
                 <div id="popup">
                     <div id="popup-content">
-                        <h2>Preencha seus dados</h2>
+                        <h2></h2>
                         <form onSubmit={handleSubmit}>
                             <input 
                                 type="text" 
@@ -206,7 +206,7 @@ const Curso = () => {
                                 onChange={(e) => setSenha(e.target.value)} 
                                 required 
                             /><br></br>
-                            <button type="submit">Enviar</button>
+                            <button type="submit" id="começar-btn">Enviar</button>
                         </form>
                     </div>
                 </div>
