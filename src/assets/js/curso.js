@@ -12,6 +12,7 @@ const Cursos = () => {
     const [editTitulo, setEditTitulo] = useState('');
     const [editConteudo, setEditConteudo] = useState('');
     const [editUrlCurso, setEditUrlCurso] = useState('');
+    const [editUrlVideo, setEditUrlVideo] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -32,18 +33,20 @@ const Cursos = () => {
         setEditTitulo(curso.titulo);
         setEditConteudo(curso.conteudo);
         setEditUrlCurso(curso.nameUrl);
+        setEditUrlVideo(curso.urlvideo)
     };
 
     const handleUpdate = async () => {
         try {
             const token = localStorage.getItem('token');
             const config = { headers: { Authorization: `${token}` } };
-            const response = await axios.patch(`https://api.cestsegtrabalho.com.br/curso/${editCursoId}`, { titulo: editTitulo, conteudo: editConteudo, nameUrl: editUrlCurso }, config);
+            const response = await axios.patch(`https://api.cestsegtrabalho.com.br/curso/${editCursoId}`, { titulo: editTitulo, conteudo: editConteudo, nameUrl: editUrlCurso, urlvideo: editUrlVideo }, config);
             setCursos(cursos.map(curso => curso._id === editCursoId ? response.data : curso));
             setEditCursoId(null);
             setEditTitulo('');
             setEditConteudo('');
             setEditUrlCurso('');
+            setEditUrlVideo('');
         } catch (error) {
             console.error('Erro ao atualizar curso:', error);
         }
@@ -79,6 +82,13 @@ const Cursos = () => {
                                     value={editTitulo}
                                     onChange={(e) => setEditTitulo(e.target.value)}
                                     placeholder="Título do Curso"
+                                />
+                                <input
+                                    className='inputs'
+                                    type="text"
+                                    value={editUrlVideo}
+                                    onChange={(e) => setEditUrlVideo(e.target.value)}
+                                    placeholder="Url do Vídeo"
                                 />
                                 <CKEditor
                                     editor={ClassicEditor}
