@@ -11,7 +11,8 @@ const Cursos = () => {
     const [editCursoId, setEditCursoId] = useState(null);
     const [editTitulo, setEditTitulo] = useState('');
     const [editConteudo, setEditConteudo] = useState('');
-    const [editUrlCurso, setEditUrlCurso] = useState('');
+    const [editNameUrl, setEditNameUrl] = useState('');
+    const [editLinkUrl, setEditLinkUrl] = useState('')
     const [editUrlVideo, setEditUrlVideo] = useState('');
     const navigate = useNavigate();
 
@@ -32,7 +33,8 @@ const Cursos = () => {
         setEditCursoId(curso._id);
         setEditTitulo(curso.titulo);
         setEditConteudo(curso.conteudo);
-        setEditUrlCurso(curso.nameUrl);
+        setEditNameUrl(curso.nameUrl);
+        setEditLinkUrl(curso.linkUrl)
         setEditUrlVideo(curso.urlvideo)
     };
 
@@ -40,12 +42,15 @@ const Cursos = () => {
         try {
             const token = localStorage.getItem('token');
             const config = { headers: { Authorization: `${token}` } };
-            const response = await axios.patch(`https://api.cestsegtrabalho.com.br/curso/${editCursoId}`, { titulo: editTitulo, conteudo: editConteudo, nameUrl: editUrlCurso, urlvideo: editUrlVideo }, config);
+            const metadeUrl = 'https://app.cestsegtrabalho.com.br/curso/';
+            const novolinkUrl = metadeUrl + editNameUrl;
+            const response = await axios.patch(`https://api.cestsegtrabalho.com.br/curso/${editCursoId}`, { titulo: editTitulo, conteudo: editConteudo, nameUrl: editNameUrl, linkUrl: novolinkUrl, urlvideo: editUrlVideo }, config);
             setCursos(cursos.map(curso => curso._id === editCursoId ? response.data : curso));
             setEditCursoId(null);
             setEditTitulo('');
             setEditConteudo('');
-            setEditUrlCurso('');
+            setEditNameUrl('');
+            setEditLinkUrl('')
             setEditUrlVideo('');
         } catch (error) {
             console.error('Erro ao atualizar curso:', error);
@@ -100,8 +105,8 @@ const Cursos = () => {
                                 <input
                                     className='inputs'
                                     type="text"
-                                    value={editUrlCurso}
-                                    onChange={(e) => setEditUrlCurso(e.target.value)}
+                                    value={editNameUrl}
+                                    onChange={(e) => setEditNameUrl(e.target.value)}
                                     placeholder="URL do Curso"
                                 /><br />
                                 <button onClick={handleUpdate}>Salvar</button>
