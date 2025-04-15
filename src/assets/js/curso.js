@@ -14,6 +14,7 @@ const Cursos = () => {
     const [editNameUrl, setEditNameUrl] = useState('');
     const [editLinkUrl, setEditLinkUrl] = useState('')
     const [editUrlVideo, setEditUrlVideo] = useState('');
+    const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -82,9 +83,30 @@ const Cursos = () => {
     return (
         <div id='cursos-father'>
             <h1>Cursos</h1>
+            <div style={{ marginBottom: '20px' }}>
+            <input
+                type="text"
+                placeholder="🔍 Buscar curso..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{
+                    padding: '10px',
+                    width: '100%',
+                    maxWidth: '400px',
+                    fontSize: '16px',
+                    borderRadius: '8px',
+                    border: '1px solid #ccc'
+                }}
+            />
+        </div>
+
             <ul>
-                {cursos.map(curso => (
-                    <li key={curso._id}>
+                {cursos
+                    .filter(curso => 
+                        curso.titulo.toLowerCase().includes(searchTerm.toLowerCase())
+                    )
+                    .map(curso => (
+                        <li key={curso._id}>
                         {editCursoId === curso._id ? (
                             <div>
                                 <input
@@ -129,6 +151,53 @@ const Cursos = () => {
                         )}
                     </li>
                 ))}
+
+                {/* {cursos.map(curso => (
+                    <li key={curso._id}>
+                        {editCursoId === curso._id ? (
+                            <div>
+                                <input
+                                    className='inputs'
+                                    type="text"
+                                    value={editTitulo}
+                                    onChange={(e) => setEditTitulo(e.target.value)}
+                                    placeholder="Título do Curso"
+                                />
+                                <input
+                                    className='inputs'
+                                    type="text"
+                                    value={editUrlVideo}
+                                    onChange={(e) => setEditUrlVideo(e.target.value)}
+                                    placeholder="Url do Vídeo"
+                                />
+                                <CKEditor
+                                    editor={ClassicEditor}
+                                    data={editConteudo}
+                                    onChange={(event, editor) => setEditConteudo(editor.getData())}
+                                    placeholder="Conteúdo do Curso"
+                                />
+                                <label>Escreva a URL do curso com letras minúsculas</label>
+                                <input
+                                    className='inputs'
+                                    type="text"
+                                    value={editNameUrl}
+                                    onChange={(e) => setEditNameUrl(e.target.value)}
+                                    placeholder="URL do Curso"
+                                /><br />
+                                <button onClick={handleUpdate}>Salvar</button>
+                                <button onClick={() => setEditCursoId(null)}>Cancelar</button>
+                            </div>
+                        ) : (
+                            <div>
+                                <span>Título: {curso.titulo}</span><br />
+                                <span>URL: {curso.linkUrl}</span><br />
+                                <button onClick={() => handleEdit(curso)}>Editar</button>
+                                <button onClick={() => handleDelete(curso._id)}>Deletar</button>
+                                <button onClick={() => handleShare(curso.linkUrl, curso.titulo)}>Compartilhar no WhatsApp</button>
+                            </div>
+                        )}
+                    </li>
+                ))} */}
             </ul>
         </div>
     );

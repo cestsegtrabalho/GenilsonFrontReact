@@ -9,6 +9,7 @@ const Provas = () => {
     const [editUrlProva, setEditUrlProva] = useState('');
     const [questoes, setQuestoes] = useState({}); // Alterado para suportar diferentes arrays de questões
     const [nameUrl, setNameUrl] = useState()
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         fetchProvas();
@@ -119,9 +120,30 @@ const Provas = () => {
     return (
         <div id='prova-father'>
             <h1>Provas</h1>
+            <div style={{ marginBottom: '20px' }}>
+            <input
+                type="text"
+                placeholder="🔍 Buscar prova..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{
+                    padding: '10px',
+                    width: '100%',
+                    maxWidth: '400px',
+                    fontSize: '16px',
+                    borderRadius: '8px',
+                    border: '1px solid #ccc'
+                }}
+            />
+            </div>
+
             <ul>
-                {provas.map(prova => (
-                    <li key={prova._id}>
+                {provas
+                    .filter(prova => 
+                        prova.nameProva.toLowerCase().includes(searchTerm.toLowerCase())
+                    )
+                    .map(prova => (
+                        <li key={prova._id}>
                         {editProvaId === prova._id ? (
                             <div>
                                 <input
@@ -192,8 +214,81 @@ const Provas = () => {
 
                             </div>
                         )}
-                    </li>
+                        </li>
                 ))}
+
+                {/* {provas.map(prova => (
+                    <li key={prova._id}>
+                        {editProvaId === prova._id ? (
+                            <div>
+                                <input
+                                    type="text"
+                                    value={editTitulo}
+                                    onChange={(e) => setEditTitulo(e.target.value)}
+                                    placeholder="Título da Prova"
+                                />
+                                <input
+                                    type="text"
+                                    value={editUrlProva}
+                                    onChange={(e) => setEditUrlProva(e.target.value)}
+                                    placeholder="URL da Prova"
+                                />
+                                <br />
+                                {['treino1', 'treino2', 'treino3', 'treino4', 'treino5'].map(treinoType => (
+                                    <div key={treinoType}>
+                                        <h2>{treinoType}</h2>
+                                        {questoes[treinoType]?.map((questao, index) => (
+                                            <div key={index}>
+                                                <input
+                                                    className='inputs'
+                                                    type="text"
+                                                    value={questao.grupoMuscular}
+                                                    onChange={(e) => handleQuestionChange(treinoType, index, 'grupoMuscular', e.target.value)}
+                                                    placeholder={`Grupo Muscular ${index + 1}`}
+                                                />
+                                                <input
+                                                    className='inputs'
+                                                    type="text"
+                                                    value={questao.exercicio}
+                                                    onChange={(e) => handleQuestionChange(treinoType, index, 'exercicio', e.target.value)}
+                                                    placeholder={`Exercício ${index + 1}`}
+                                                />
+                                                <input
+                                                    className='inputs'
+                                                    type="text"
+                                                    value={questao.series}
+                                                    onChange={(e) => handleQuestionChange(treinoType, index, 'series', e.target.value)}
+                                                    placeholder={`Séries ${index + 1}`}
+                                                />
+                                                <input
+                                                    className='inputs'
+                                                    type="text"
+                                                    value={questao.repeticoes}
+                                                    onChange={(e) => handleQuestionChange(treinoType, index, 'repeticoes', e.target.value)}
+                                                    placeholder={`Repetições ${index + 1}`}
+                                                />
+                                                <br />
+                                            </div>
+                                        ))}
+                                    </div>
+                                ))}
+                                <button onClick={handleUpdate}>Salvar</button>
+                                <button onClick={() => setEditProvaId(null)}>Cancelar</button>
+                            </div>
+                        ) : (
+                            <div>
+                                <span>Título: {prova.nameProva}</span>
+                                <br />
+                                <span>URL: {prova.linkUrl}</span>
+                                <br />
+                                <button onClick={() => handleEdit(prova)}>Editar</button>
+                                <button onClick={() => handleDelete(prova._id)}>Deletar</button>
+                                <button onClick={() => handleShare(prova.linkUrl, prova.nameProva)}>Compartilhar</button>
+                                <CompartilharSimples linkUrl={prova.linkUrl} nameprova={prova.nameProva} />
+                            </div>
+                        )}
+                    </li>
+                ))} */}
             </ul>
         </div>
     );
