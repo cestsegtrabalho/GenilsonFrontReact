@@ -69,7 +69,7 @@ const Cursos = () => {
     };
 
     const handleShare = (url, nomecurso) => {
-        const mensagem = `CURSO ${nomecurso}\n\n${url}`;
+        const mensagem = `*CURSO ${nomecurso}* \n\n${url}`;
         const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(mensagem)}`;
         window.open(whatsappUrl, '_blank');
     };

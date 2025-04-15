@@ -204,7 +204,7 @@ const Prova = () => {
                             />
                             <input 
                                 type="text" 
-                                placeholder="D a t a"
+                                placeholder="D..a..t..a"
                                 value={dataGenilson} 
                                 onChange={(e) => setDataGenilson(e.target.value)} 
                                 required 
