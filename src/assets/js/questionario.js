@@ -204,7 +204,11 @@ const Prova = () => {
                             />
                             <input 
                                 type="text" 
-                                placeholder="D..a..t..a"
+                                placeholder="D a t a"
+                                translate="no"
+                                autoComplete="off"
+                                name="notranslate-dataGenilson"
+                                className="notranslate"
                                 value={dataGenilson} 
                                 onChange={(e) => setDataGenilson(e.target.value)} 
                                 required 
