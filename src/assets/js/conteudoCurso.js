@@ -197,11 +197,15 @@ const Curso = () => {
                                 onChange={(e) => setNomeEmpresa(e.target.value)} 
                             />
                             <input 
-                                type="text" 
-                                placeholder='D..a..t..a'
-                                value={dataGenilson} 
-                                onChange={(e) => setDataGenilson(e.target.value)} 
-                                required 
+                            type="text" 
+                            placeholder="D a t a"
+                            value={dataGenilson} 
+                            onChange={(e) => setDataGenilson(e.target.value)} 
+                            required 
+                            translate="no"
+                            autoComplete="off"
+                            name="notranslate-dataGenilson"
+                            className="notranslate"
                             />
                             <input 
                                 type="text" 
