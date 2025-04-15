@@ -68,10 +68,16 @@ const Cursos = () => {
         }
     };
 
-    const handleShare = (url) => {
-        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(url)}`;
+    const handleShare = (url, nomecurso) => {
+        const mensagem = `CURSO ${nomecurso}\n\n${url}`;
+        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(mensagem)}`;
         window.open(whatsappUrl, '_blank');
     };
+
+    // const handleShare = (url) => {
+    //     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(url)}`;
+    //     window.open(whatsappUrl, '_blank');
+    // };
 
     return (
         <div id='cursos-father'>
@@ -118,7 +124,7 @@ const Cursos = () => {
                                 <span>URL: {curso.linkUrl}</span><br />
                                 <button onClick={() => handleEdit(curso)}>Editar</button>
                                 <button onClick={() => handleDelete(curso._id)}>Deletar</button>
-                                <button onClick={() => handleShare(curso.linkUrl)}>Compartilhar no WhatsApp</button>
+                                <button onClick={() => handleShare(curso.linkUrl, curso.titulo)}>Compartilhar no WhatsApp</button>
                             </div>
                         )}
                     </li>

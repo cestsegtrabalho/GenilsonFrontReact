@@ -198,7 +198,7 @@ const Curso = () => {
                             />
                             <input 
                                 type="text" 
-                                placeholder='Data'
+                                placeholder='D a t a'
                                 value={dataGenilson} 
                                 onChange={(e) => setDataGenilson(e.target.value)} 
                                 required 

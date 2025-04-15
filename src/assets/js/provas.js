@@ -72,14 +72,20 @@ const Provas = () => {
         }
     };
 
-    const handleShare = (url) => {
-        if (url) {
-            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(url)}`;
-            window.open(whatsappUrl, '_blank');
-        } else {
-            console.error('URL inválida para compartilhar:', url);
-        }
+    const handleShare = (url, nameprova) => {
+        const mensagem = `*PROVA ${nameprova}* \n\n${url}`;
+        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(mensagem)}`;
+        window.open(whatsappUrl, '_blank');
     };
+
+    // const handleShare = (url) => {
+    //     if (url) {
+    //         const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(url)}`;
+    //         window.open(whatsappUrl, '_blank');
+    //     } else {
+    //         console.error('URL inválida para compartilhar:', url);
+    //     }
+    // };
 
     const handleQuestionChange = (treinoType, index, field, value) => {
         setQuestoes(prevQuestoes => {
@@ -181,8 +187,8 @@ const Provas = () => {
                                 <br />
                                 <button onClick={() => handleEdit(prova)}>Editar</button>
                                 <button onClick={() => handleDelete(prova._id)}>Deletar</button>
-                                <button onClick={() => handleShare(prova.linkUrl)}>Compartilhar</button>
-                                <CompartilharSimples linkUrl={prova.linkUrl} /> {/* Usar o componente */}
+                                <button onClick={() => handleShare(prova.linkUrl, prova.nameProva)}>Compartilhar</button>
+                                <CompartilharSimples linkUrl={prova.linkUrl} nameprova={prova.nameProva} /> {/* Usar o componente */}
 
                             </div>
                         )}
