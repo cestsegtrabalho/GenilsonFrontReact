@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Aprovado from "./aprovado";
 import logo from '../img/logo.png';
+import { Helmet } from "react-helmet";
 
 
 const Prova = () => {
@@ -155,6 +156,9 @@ const Prova = () => {
 
     return (
         <div id="questionario-father">
+            <Helmet>
+            <title>{nomeCurso ? `PROVA - ${nomeCurso}` : 'PROVA'}</title>
+            </Helmet>
             <div id="questionario-img">
                 <img id="img" src={logo} alt="Logo" />
             </div>

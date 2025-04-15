@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../img/logo.png';
+import { Helmet } from 'react-helmet';
 
 const Curso = () => {
     const { nameUrl } = useParams();
@@ -127,6 +128,9 @@ const Curso = () => {
 
     return (
         <div id='conteudo-cursoFather'>
+            <Helmet>
+            <title>{curso.title ? `CURSO - ${curso.title}` : 'CURSO'}</title>
+            </Helmet>
             <div id="questionario-img">
                 <div id='divDentroQuestionarioImg'>
                     <p id='conteudo-text'><b>CESTSEGTRABALHO</b></p>
