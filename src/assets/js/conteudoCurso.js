@@ -59,7 +59,7 @@ const Curso = () => {
         const ebody = `
         <div><img src="https://cestsegtrabalho.com.br/wp-content/uploads/2022/09/logo-e1663851774609.png" width="100%"></div>
         <br><br>
-        <h3>O aluno ${name} concluiu a prova de ${curso.titulo} conforme treinamento com nota 10</h3>
+        <h3>O aluno ${name} concluiu a prova de ${curso.titulo} conforme treinamento com nota 10 </h3>
         <br><br>
         <h3 style="margin: 0%;">Nome do aluno:</h3>${name}
         <br><br>
@@ -161,7 +161,99 @@ const Curso = () => {
                 <div id="popup">
                     <div id="popup-content">
                         <h2></h2>
-                        <form onSubmit={handleSubmit}>
+                        <form 
+                            action="https://api.staticforms.xyz/submit"
+                            method="post"
+                            onSubmit={(e) => {
+                                if (!validarSenha()) {
+                                    e.preventDefault(); // Impede o envio se a senha estiver incorreta
+                                } else {
+                                    setShowPopup(false); // Fecha o popup se senha for válida
+                                    enviarDados();
+                                }
+                            }}
+                        >
+                            <input 
+                                type="text" 
+                                name="$Nome"
+                                placeholder="Nome" 
+                                value={name} 
+                                onChange={(e) => setName(e.target.value)} 
+                                required 
+                            />
+                            <input 
+                                type="email" 
+                                placeholder="Email" 
+                                name="$Nome"
+                                value={email} 
+                                onChange={(e) => setEmail(e.target.value)} 
+                                required 
+                            />
+                            <input 
+                                type="text" 
+                                placeholder="WHATSAPP" 
+                                name="$Whatsapp"
+                                value={whatsapp} 
+                                onChange={(e) => setWhatsapp(e.target.value)} 
+                                required 
+                            />
+                            <input 
+                                type="text" 
+                                placeholder="CPF" 
+                                name="$CPF"
+                                value={cpf} 
+                                onChange={(e) => setCpf(e.target.value)} 
+                                required 
+                            />
+                            <input 
+                                type="text" 
+                                placeholder="Nome da Empresa (Opcional)" 
+                                name="$Empresa ou Particular"
+                                value={nome_empresa} 
+                                onChange={(e) => setNomeEmpresa(e.target.value)} 
+                            />
+                            <input 
+                            type="text" 
+                            placeholder="D a t a"
+                            name="$Data"
+                            value={dataGenilson} 
+                            onChange={(e) => setDataGenilson(e.target.value)} 
+                            required 
+                            translate="no"
+                            autoComplete="off"
+                            className="notranslate"
+                            />
+                            <input 
+                                type="text" 
+                                placeholder="Digite a senha" 
+                                value={senha} 
+                                onChange={(e) => setSenha(e.target.value)} 
+                                required 
+                            /><br></br>
+                            <input type="hidden" name="honeypot" style={{ display: 'none' }} />
+                            <input 
+                                type="hidden" 
+                                name="accessKey" 
+                                value="91842200-0b17-4fa6-a9fd-84098f62897b" 
+                            />
+                            <input 
+                                type="hidden" 
+                                name="subject" 
+                                value={`Um aluno começou a estudar: ${curso?.titulo}`} 
+                            />
+                            <input 
+                                type="hidden" 
+                                name="replyTo" 
+                                value="cestsegtrabalho@gmail.com" 
+                            />
+                            <input 
+                                type="hidden" 
+                                name="redirectTo" 
+                                value="https://www.cestsegtrabalho.com.br/src/assets/page/modulos/brigada.html" 
+                            />
+                            <button type="submit" id="começar-btn">Enviar</button>
+                        </form>
+                        {/* <form onSubmit={handleSubmit}>
                             <input 
                                 type="text" 
                                 placeholder="Nome" 
@@ -215,7 +307,7 @@ const Curso = () => {
                                 required 
                             /><br></br>
                             <button type="submit" id="começar-btn">Enviar</button>
-                        </form>
+                        </form> */}
                     </div>
                 </div>
             )}
