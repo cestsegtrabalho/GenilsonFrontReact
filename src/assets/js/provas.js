@@ -79,15 +79,6 @@ const Provas = () => {
         window.open(whatsappUrl, '_blank');
     };
 
-    // const handleShare = (url) => {
-    //     if (url) {
-    //         const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(url)}`;
-    //         window.open(whatsappUrl, '_blank');
-    //     } else {
-    //         console.error('URL inválida para compartilhar:', url);
-    //     }
-    // };
-
     const handleQuestionChange = (treinoType, index, field, value) => {
         setQuestoes(prevQuestoes => {
             const updatedQuestoes = { ...prevQuestoes };
@@ -216,79 +207,6 @@ const Provas = () => {
                         )}
                         </li>
                 ))}
-
-                {/* {provas.map(prova => (
-                    <li key={prova._id}>
-                        {editProvaId === prova._id ? (
-                            <div>
-                                <input
-                                    type="text"
-                                    value={editTitulo}
-                                    onChange={(e) => setEditTitulo(e.target.value)}
-                                    placeholder="Título da Prova"
-                                />
-                                <input
-                                    type="text"
-                                    value={editUrlProva}
-                                    onChange={(e) => setEditUrlProva(e.target.value)}
-                                    placeholder="URL da Prova"
-                                />
-                                <br />
-                                {['treino1', 'treino2', 'treino3', 'treino4', 'treino5'].map(treinoType => (
-                                    <div key={treinoType}>
-                                        <h2>{treinoType}</h2>
-                                        {questoes[treinoType]?.map((questao, index) => (
-                                            <div key={index}>
-                                                <input
-                                                    className='inputs'
-                                                    type="text"
-                                                    value={questao.grupoMuscular}
-                                                    onChange={(e) => handleQuestionChange(treinoType, index, 'grupoMuscular', e.target.value)}
-                                                    placeholder={`Grupo Muscular ${index + 1}`}
-                                                />
-                                                <input
-                                                    className='inputs'
-                                                    type="text"
-                                                    value={questao.exercicio}
-                                                    onChange={(e) => handleQuestionChange(treinoType, index, 'exercicio', e.target.value)}
-                                                    placeholder={`Exercício ${index + 1}`}
-                                                />
-                                                <input
-                                                    className='inputs'
-                                                    type="text"
-                                                    value={questao.series}
-                                                    onChange={(e) => handleQuestionChange(treinoType, index, 'series', e.target.value)}
-                                                    placeholder={`Séries ${index + 1}`}
-                                                />
-                                                <input
-                                                    className='inputs'
-                                                    type="text"
-                                                    value={questao.repeticoes}
-                                                    onChange={(e) => handleQuestionChange(treinoType, index, 'repeticoes', e.target.value)}
-                                                    placeholder={`Repetições ${index + 1}`}
-                                                />
-                                                <br />
-                                            </div>
-                                        ))}
-                                    </div>
-                                ))}
-                                <button onClick={handleUpdate}>Salvar</button>
-                                <button onClick={() => setEditProvaId(null)}>Cancelar</button>
-                            </div>
-                        ) : (
-                            <div>
-                                <span>Título: {prova.nameProva}</span>
-                                <br />
-                                <span>URL: {prova.linkUrl}</span>
-                                <br />
-                                <button onClick={() => handleEdit(prova)}>Editar</button>
-                                <button onClick={() => handleDelete(prova._id)}>Deletar</button>
-                                <button onClick={() => handleShare(prova.linkUrl, prova.nameProva)}>Compartilhar</button>
-                                <CompartilharSimples linkUrl={prova.linkUrl} nameprova={prova.nameProva} />
-                            </div>
-                        )}
-                    </li>
-                ))} */}
             </ul>
         </div>
     );

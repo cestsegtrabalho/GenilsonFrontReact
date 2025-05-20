@@ -10,6 +10,7 @@ const History = () => {
     const [dobrascutaneas, setDobrasCutaneas] = useState([]);
     const [selectedDobra, setSelectedDobra] = useState(null); // Adicionando estado para controlar qual dobra está selecionada
     const [selectedPerimetria, setSelectedPerimetria] = useState(null); // Adicionando estado para controlar qual perimetria está selecionada
+    const [searchTerm, setSearchTerm] = useState("");
 
     // Pega os dados da loja
     const fetchLoja = async () => {
@@ -33,10 +34,13 @@ const History = () => {
     };
 
     // Pega as dobras cutâneas do usuário
-    const fetchDobrasCutaneas = async () => {
+    const fetchDobrasCutaneas = async (userId) => {
         try {
             const responseDobrasCutaneas = await axios.get(`https://api.cestsegtrabalho.com.br/dobrascutaneas/tudo`);
-            setDobrasCutaneas(responseDobrasCutaneas.data.reverse());
+            const dobrasDoUsuario = responseDobrasCutaneas.data
+                .filter((d) => d.userId === userId)
+                .reverse();
+            setDobrasCutaneas(dobrasDoUsuario);
         } catch (error) {
             console.error("Erro ao buscar as dobras cutâneas do usuário: ", error);
         }
@@ -68,25 +72,44 @@ const History = () => {
                     
                     <div className="item-history">
                     <h4>Provas feitas recentemente</h4>
-                        {dobrascutaneas.map((dobra) => (
-                            <div key={dobra._id}>
-                                {/* Exibir os dados das dobras cutâneas */}
-                                {/* Exemplo: */}
-                                <p><b>{moment(dobra.createdAt).format('DD/MM/YYYY HH:mm:ss')}</b> </p>
-                                <p><b></b> {dobra.abdominal}</p>
-                                <p><b>Aluno:</b> {dobra.subescapular}</p> 
-                                {/* Adicionando condição para mostrar mais dados quando o botão for clicado */}
+                    {/* Barra de pesquisa */}
+                    <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
+                        <span style={{ marginRight: '8px' }}>🔍</span>
+                        <input
+                            type="text"
+                            placeholder="Buscar por nome do aluno..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            style={{
+                                padding: '8px',
+                                borderRadius: '4px',
+                                border: '1px solid #ccc',
+                                flex: 1,
+                            }}
+                        />
+                    </div>
+                        {dobrascutaneas
+                        .filter((dobra) =>
+                            dobra.subescapular?.toLowerCase().includes(searchTerm.toLowerCase())
+                        )
+                        .map((dobra) => (
+                            <div key={dobra._id} style={{ marginBottom: '1rem' }}>
+                                <p><b>{moment(dobra.createdAt).format('DD/MM/YYYY HH:mm:ss')}</b></p>
+                                <p>{dobra.abdominal}</p>
+                                <p><b>Aluno:</b> {dobra.subescapular}</p>
+
                                 {selectedDobra === dobra && (
                                     <>
-                                        <p><b>email:</b> {dobra.peitoral}</p>
-                                        <p><b>tel:</b> {dobra.triciptal}</p>
-                                        <p><b>CPF:</b> {dobra.coxa}</p>            
-                                    
-
+                                        <p><b>Email:</b> {dobra.peitoral}</p>
+                                        <p><b>Tel:</b> {dobra.triciptal}</p>
+                                        <p><b>CPF:</b> {dobra.coxa}</p>
                                     </>
                                 )}
-                                {/* Botão para mostrar mais ou menos dados */}
-                                <button onClick={() => handleShowMoreDobra(dobra)} className="button-history">
+
+                                <button
+                                    onClick={() => handleShowMoreDobra(dobra)}
+                                    className="button-history"
+                                >
                                     {selectedDobra === dobra ? "Mostrar Menos" : "Mostrar Mais"}
                                 </button>
                             </div>
