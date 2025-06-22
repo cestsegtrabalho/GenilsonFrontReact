@@ -10,6 +10,7 @@ import Provas from "./provas";
 import Cursos from "./curso";
 import CreateGabarito from "./criarGabarito";
 import Gabaritos from "./gabaritos";
+import '../css/home.css'
 
 const TreinoCompleto = () => {
     const [componente, setComponente] = useState();
@@ -42,31 +43,37 @@ const TreinoCompleto = () => {
     return (
         <div className="father-treino">
             <div className="children-Treino-Completo">
-                <button className="bottom-bar-button-treino" onClick={cursos}>
-                    <BsBook className="icon" />
-                    <span>Seus Novos Cursos</span>
-                </button>
-                <button className="bottom-bar-button-treino" onClick={provas}>
-                    <BsBook className="icon" />
-                    <span>Suas Novas Provas</span>
-                </button>
-                <button className="bottom-bar-button-treino" onClick={gabaritos}>
-                    <BsBook className="icon" />
-                    <span>Seus Gabaritos</span>
-                </button>
-                <button className="bottom-bar-button-treino" onClick={createCurso}>
-                    <BsBook className="icon" />
-                    <span>Criar Curso</span>
-                </button>
-                <button className="bottom-bar-button-treino" onClick={criarQuiz}>
-                    <BsBook className="icon" />
-                    <span>Criar Prova</span>
-                </button>
-                <button className="bottom-bar-button-treino" onClick={criarGabarito}>
-                    <BsBook className="icon" />
-                    <span>Criar Gabarito</span>
-                </button>
-            </div>
+  <div className="button-row">
+    <button className="bottom-bar-button-treino" onClick={cursos}>
+      <BsBook className="icon" />
+      <span>Seus Novos Cursos</span>
+    </button>
+    <button className="bottom-bar-button-treino" onClick={provas}>
+      <BsBook className="icon" />
+      <span>Suas Novas Provas</span>
+    </button>
+    <button className="bottom-bar-button-treino" onClick={gabaritos}>
+      <BsBook className="icon" />
+      <span>Seus Gabaritos</span>
+    </button>
+  </div>
+
+  <div className="button-row criar-row">
+    <button className="bottom-bar-button-treino" onClick={createCurso}>
+      <BsBook className="icon" />
+      <span>Criar Curso</span>
+    </button>
+    <button className="bottom-bar-button-treino" onClick={criarQuiz}>
+      <BsBook className="icon" />
+      <span>Criar Prova</span>
+    </button>
+    <button className="bottom-bar-button-treino" onClick={criarGabarito}>
+      <BsBook className="icon" />
+      <span>Criar Gabarito</span>
+    </button>
+  </div>
+</div>
+
             <div className="componente-container">
                 {componente}
             </div>
