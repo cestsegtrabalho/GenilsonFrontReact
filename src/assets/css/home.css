@@ -87,6 +87,9 @@ body {
     margin: 4px 0px;
     cursor: pointer;
     border-radius: 4px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .bottom-bar-button:hover {

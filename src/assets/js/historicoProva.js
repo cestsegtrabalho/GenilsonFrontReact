@@ -25,7 +25,7 @@ const History = () => {
     // Pega as dobras cutâneas do usuário
     const fetchDobrasCutaneas = async (userId) => {
         try {
-            const responseDobrasCutaneas = await axios.get(`https://api.cestsegtrabalho.com.br/historicocurso/get`);
+            const responseDobrasCutaneas = await axios.get(`https://api.cestsegtrabalho.com.br/historicoprova/get`);
             const dobrasDoUsuario = responseDobrasCutaneas.data
                 .filter((d) => d.userId === userId)
                 .reverse();
@@ -65,7 +65,7 @@ const History = () => {
                     {/* Exibir as dobras cutâneas */}
                     
                     <div className="item-history">
-                    <h4>Alunos Estudando em Tempo Real</h4>
+                    <h4>Alunos que Concluíram a Prova</h4>
                     {/* Barra de pesquisa */}
                     <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
                         <span style={{ marginRight: '8px' }}>🔍</span>
@@ -84,7 +84,7 @@ const History = () => {
                     </div>
                         {dobrascutaneas
                         .filter((dobra) =>
-                            dobra.tituloCurso?.toLowerCase().includes(searchTerm.toLowerCase())
+                            dobra.tituloProva?.toLowerCase().includes(searchTerm.toLowerCase())
                         )
                         .map((dobra) => (
                             <div key={dobra._id} style={{ marginBottom: '1rem' }}>

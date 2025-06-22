@@ -58,16 +58,16 @@ const Prova = () => {
 
     const enviarDados = async () => {
         try {
-            const response = await axios.post('https://api.cestsegtrabalho.com.br/dobrascutaneas/criar', {
-                subescapular: name,
-                peitoral: email,
-                triciptal: whatsapp,
-                abdominal: nomeCurso,
-                coxa: cpf
+            const response = await axios.post('https://api.cestsegtrabalho.com.br/historicoprova/criar', {
+                tituloProva: nomeCurso,
+                name: name,
+                email: email,
+                whatsapp: whatsapp,
+                cpf: cpf
             });
-            console.log('Perimetria cadastrada com sucesso');
+            console.log('Prova Concluída');
         } catch (error) {
-            console.error('Erro ao criar Perimetria: ', error);
+            console.error('Erro ao acompanhar prova concluída: ', error);
         }
     };
 

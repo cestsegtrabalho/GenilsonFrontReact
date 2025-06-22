@@ -4,10 +4,12 @@ import { useParams } from "react-router-dom";
 import { FaDumbbell, FaUserCircle } from 'react-icons/fa';
 import { GrHomeRounded } from "react-icons/gr";
 import { GoHistory } from "react-icons/go";
+import { HiOutlineStatusOnline } from "react-icons/hi";
 import { LiaDumbbellSolid } from "react-icons/lia";
 import { IoIosLogOut } from "react-icons/io";
 import Dados from "./dados";
 import History from "./historico";
+import HistoryProva from "./historicoProva"
 import TreinoCompleto from "./treinoCompletos";
 import LoginUser from "./loginUser";
 import ResetPasswordRequest from "./resetPasswordrequest";
@@ -22,6 +24,10 @@ const Home = () => {
 
     const buttonHistory = () => {
         setComponente(<History />);
+    }
+
+    const buttonHistoryProva = () => {
+        setComponente(<HistoryProva />);
     }
 
     const buttonDados = () => {
@@ -96,13 +102,16 @@ const Home = () => {
                     <div className="bottom-bar">
                         
                             <button className="bottom-bar-button" onClick={buttonDados}>
-                                <GrHomeRounded className="icone-buttonbar"/> 
+                                <GrHomeRounded className="icone-buttonbar"/> Home
                             </button>
                             <button className="bottom-bar-button" onClick={buttonHistory}>
-                                <GoHistory className="icone-buttonbar"/> 
+                                <HiOutlineStatusOnline className="icone-buttonbar"/> Estudando Agora
+                            </button>
+                            <button className="bottom-bar-button" onClick={buttonHistoryProva}>
+                                <GoHistory className="icone-buttonbar"/> Provas Feitas
                             </button>
                             <button className="bottom-bar-button" onClick={buttonTreino}>
-                                <BsBook className="icone-buttonbar-dumbble"/> 
+                                <BsBook className="icone-buttonbar-dumbble"/> Estudos e Provas
                             </button>
                     </div>
                 </div>

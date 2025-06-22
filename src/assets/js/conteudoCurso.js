@@ -42,16 +42,16 @@ const Curso = () => {
     // Funções para enviar dados e email
     const enviarDados = async () => {
         try {
-            const response = await axios.post('https://api.cestsegtrabalho.com.br/dobrascutaneas/criar', {
-                subescapular: name,
-                peitoral: email,
-                triciptal: whatsapp,
-                abdominal: curso.titulo, // Adaptado conforme os dados do curso
-                coxa: cpf,
+            const response = await axios.post('https://api.cestsegtrabalho.com.br/historicocurso/criar', {
+                tituloCurso: curso.titulo,
+                name: name,
+                email: email,
+                whatsapp: whatsapp,
+                cpf: cpf,
             });
-            console.log('Perimetria cadastrada com sucesso');
+            console.log('Um aluno começou a estudar');
         } catch (error) {
-            console.error('Erro ao criar Perimetria: ', error);
+            console.error('Erro ao acompanhar aluno em tempo real', error);
         }
     };
 

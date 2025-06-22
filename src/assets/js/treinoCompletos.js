@@ -8,6 +8,8 @@ import Questionario from "./questionario";
 import CreateCurso from "./createCurso";
 import Provas from "./provas";
 import Cursos from "./curso";
+import CreateGabarito from "./criarGabarito";
+import Gabaritos from "./gabaritos";
 
 const TreinoCompleto = () => {
     const [componente, setComponente] = useState();
@@ -29,6 +31,14 @@ const TreinoCompleto = () => {
         setComponente(<CreateTreino />);
     }
 
+    const criarGabarito = () => {
+        setComponente(<CreateGabarito />);
+    }
+
+    const gabaritos = () => {
+        setComponente(<Gabaritos />);
+    }
+
     return (
         <div className="father-treino">
             <div className="children-Treino-Completo">
@@ -40,6 +50,10 @@ const TreinoCompleto = () => {
                     <BsBook className="icon" />
                     <span>Suas Novas Provas</span>
                 </button>
+                <button className="bottom-bar-button-treino" onClick={gabaritos}>
+                    <BsBook className="icon" />
+                    <span>Seus Gabaritos</span>
+                </button>
                 <button className="bottom-bar-button-treino" onClick={createCurso}>
                     <BsBook className="icon" />
                     <span>Criar Curso</span>
@@ -47,6 +61,10 @@ const TreinoCompleto = () => {
                 <button className="bottom-bar-button-treino" onClick={criarQuiz}>
                     <BsBook className="icon" />
                     <span>Criar Prova</span>
+                </button>
+                <button className="bottom-bar-button-treino" onClick={criarGabarito}>
+                    <BsBook className="icon" />
+                    <span>Criar Gabarito</span>
                 </button>
             </div>
             <div className="componente-container">
