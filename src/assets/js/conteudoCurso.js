@@ -32,7 +32,7 @@ const Curso = () => {
 
     // Validação da senha
     function validarSenha() {
-        if (senha.trim() !== 'Cest6e') {
+        if (senha.trim() !== 'Cest7e') {
             alert("Senha incorreta! Tente novamente.");
             return false; // Impede o envio do formulário
         }
