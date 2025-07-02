@@ -5,6 +5,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // apagar
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import CompartilharSimplesCURSO from './CompartilharSimplesCurso';
 
 const Cursos = () => {
     const [cursos, setCursos] = useState([]);
@@ -146,7 +147,9 @@ const Cursos = () => {
                                 <span>URL: {curso.linkUrl}</span><br />
                                 <button onClick={() => handleEdit(curso)}>Editar</button>
                                 <button onClick={() => handleDelete(curso._id)}>Deletar</button>
-                                <button onClick={() => handleShare(curso.linkUrl, curso.titulo)}>Compartilhar no WhatsApp</button>
+                                <button onClick={() => handleShare(curso.linkUrl, curso.titulo)}>Compartilhar</button>
+                                {/* <button onClick={() => handleShare(curso.linkUrl, curso.titulo)}>Compartilhar Sem Formulário</button> */}
+                                <CompartilharSimplesCURSO linkUrl={curso.linkUrl} namecurso={curso.titulo} />
                             </div>
                         )}
                     </li>

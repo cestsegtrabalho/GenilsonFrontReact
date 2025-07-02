@@ -9,6 +9,7 @@ import Prova from "./assets/js/questionario";
 import ProvaSimples from "./assets/js/questionarioSimples";
 import Aprovado from "./assets/js/aprovado";
 import Curso from "./assets/js/conteudoCurso";
+import CursoSimples from "./assets/js/conteudoCursoOPEN";
 import CreateUser from "./assets/js/createUser";
 import isTokenValid from "./helps/useAuth";
 
@@ -46,6 +47,7 @@ const App = () => {
           <Route path="/prova/:nameUrl" element={<Prova />} />
           <Route path="/provasimples/:nameUrl" element={<ProvaSimples />} />
           <Route path="/curso/:nameUrl" element={<Curso />} />
+          <Route path="/cursosimples/:nameUrl" element={<CursoSimples />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/" element={<LoginUser />} />
           <Route path="/login" element={<LoginUser />} />
