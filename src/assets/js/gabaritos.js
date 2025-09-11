@@ -20,7 +20,7 @@ const Gabaritos = () => {
 
     const fetchCursos = async () => {
         try {
-            const response = await axios.get('https://api.comunhaorara.com:8081/gabarito/buscar');
+            const response = await axios.get('https://api.comunhaorara.com:8080/gabarito/buscar');
             setCursos(response.data);
         } catch (error) {
             console.error('Erro ao buscar cursos:', error);
@@ -37,9 +37,9 @@ const Gabaritos = () => {
         try {
             const token = localStorage.getItem('token');
             const config = { headers: { Authorization: `${token}` } };
-            const metadeUrl = 'https://api.comunhaorara.com:8081/curso/';
+            const metadeUrl = 'https://api.comunhaorara.com:8080/curso/';
             // const novolinkUrl = metadeUrl + editNameUrl;
-            const response = await axios.patch(`https://api.comunhaorara.com:8081/gabarito/${editCursoId}`, { titulo: editTitulo, conteudogabarito: editConteudo, }, config);
+            const response = await axios.patch(`https://api.comunhaorara.com:8080/gabarito/${editCursoId}`, { titulo: editTitulo, conteudogabarito: editConteudo, }, config);
             setCursos(cursos.map(curso => curso._id === editCursoId ? response.data : curso));
             setEditCursoId(null);
             setEditTitulo('');
@@ -53,7 +53,7 @@ const Gabaritos = () => {
         try {
             const token = localStorage.getItem('token');
             const config = { headers: { Authorization: `${token}` } };
-            await axios.delete(`https://api.comunhaorara.com:8081/gabarito/${id}`, config);
+            await axios.delete(`https://api.comunhaorara.com:8080/gabarito/${id}`, config);
             setCursos(cursos.filter(curso => curso._id !== id));
         } catch (error) {
             console.error('Erro ao deletar curso:', error);

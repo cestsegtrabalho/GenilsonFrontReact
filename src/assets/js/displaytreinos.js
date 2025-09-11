@@ -14,7 +14,7 @@ const DisplayTreinos = () => {
     // Pega os dados do usuário
     const fetchUserData = async () => {
         try {
-            const responseUser = await axios.get(`https://api.comunhaorara.com:8081/${username}`);
+            const responseUser = await axios.get(`https://api.comunhaorara.com:8080/${username}`);
             setUserData(responseUser.data);
         } catch (error) {
             console.error("Erro ao buscar os dados do usuário: ", error);
@@ -23,7 +23,7 @@ const DisplayTreinos = () => {
 
     const fetchTreinos = async () => {
         try {
-            const response = await axios.get(`https://api.comunhaorara.com:8081/treino/${userData._id}`);
+            const response = await axios.get(`https://api.comunhaorara.com:8080/treino/${userData._id}`);
             setTreinos(response.data);
             setVisibleTreinos(Array(response.data.length).fill(false)); // Inicializa o estado de visibilidade dos treinos
         } catch (error) {
@@ -54,7 +54,7 @@ const DisplayTreinos = () => {
 
     const handleDeleteClick = async (id, index) => {
         try {
-            await axios.delete(`https://api.comunhaorara.com:8081/treino/${id}`, {
+            await axios.delete(`https://api.comunhaorara.com:8080/treino/${id}`, {
                 headers: { Authorization: `${localStorage.getItem("token")}` }
             });
             console.log('deletado com sucesso');
@@ -74,7 +74,7 @@ const DisplayTreinos = () => {
 
     const handleSaveEdit = async (id) => {
         try {
-            await axios.patch(`https://api.comunhaorara.com:8081/treino/${id}`, editedTreino, {
+            await axios.patch(`https://api.comunhaorara.com:8080/treino/${id}`, editedTreino, {
                 headers: { Authorization: `${localStorage.getItem("token")}` }
             });
             setEditIndex(-1);

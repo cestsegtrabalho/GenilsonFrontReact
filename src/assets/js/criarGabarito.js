@@ -18,7 +18,7 @@ const CreateGabarito = () => {
             const savedToken = localStorage.getItem("token");
             if (savedToken) {
                 setToken(savedToken); // Salva o token no estado
-                const responseUserToken = await axios.get(`https://api.comunhaorara.com:8081/protected/user/buscar`, {
+                const responseUserToken = await axios.get(`https://api.comunhaorara.com:8080/protected/user/buscar`, {
                     headers: { Authorization: `${savedToken}` }
                 });
                 setIsLoggedIn(true);
@@ -51,7 +51,7 @@ const CreateGabarito = () => {
         const cursoData = { titulo, conteudogabarito };
 
         try {
-            await axios.post('https://api.comunhaorara.com:8081/gabarito/criar', cursoData, config);
+            await axios.post('https://api.comunhaorara.com:8080/gabarito/criar', cursoData, config);
             console.log('Curso cadastrado com sucesso');
             window.location.reload();
         } catch (error) {

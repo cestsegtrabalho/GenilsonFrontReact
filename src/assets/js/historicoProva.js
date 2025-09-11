@@ -15,7 +15,7 @@ const History = () => {
     // Pega os dados da loja
     const fetchLoja = async () => {
         try {
-            const responseUser = await axios.get(`https://api.comunhaorara.com:8081/${username}`);
+            const responseUser = await axios.get(`https://api.comunhaorara.com:8080/${username}`);
             setUserData(responseUser.data);
         } catch (error) {
             console.error("Erro ao buscar os dados da loja: ", error);
@@ -25,7 +25,7 @@ const History = () => {
     // Pega as dobras cutâneas do usuário
     const fetchDobrasCutaneas = async (userId) => {
         try {
-            const responseDobrasCutaneas = await axios.get(`https://api.comunhaorara.com:8081/historicoprova/get`);
+            const responseDobrasCutaneas = await axios.get(`https://api.comunhaorara.com:8080/historicoprova/get`);
             const dobrasDoUsuario = responseDobrasCutaneas.data
                 .filter((d) => d.userId === userId)
                 .reverse();

@@ -10,7 +10,7 @@ const TreinoGym = () => {
     
     const fetchUserData = async () => {
         try {
-            const responseUser = await axios.get(`https://api.comunhaorara.com:8081/${username}`);
+            const responseUser = await axios.get(`https://api.comunhaorara.com:8080/${username}`);
             setUserData(responseUser.data);
         } catch (error) {
             console.error("Erro ao buscar os dados da loja: ", error);
@@ -19,7 +19,7 @@ const TreinoGym = () => {
 
     const fetchTreinos = async () => {
         try {
-            const response = await axios.get(`https://api.comunhaorara.com:8081/treinogym/buscar`)
+            const response = await axios.get(`https://api.comunhaorara.com:8080/treinogym/buscar`)
             setTreinos(response.data);
         } catch (error) {
             console.error('Erro ao buscar treinos: ', error);

@@ -27,7 +27,7 @@ const CreateTreino = () => {
 
     const fetchDataToken = async () => {
         try {
-            const responseUserToken = await axios.get(`https://api.comunhaorara.com:8081/protected/user/buscar`, {
+            const responseUserToken = await axios.get(`https://api.comunhaorara.com:8080/protected/user/buscar`, {
                 headers: { Authorization: `${localStorage.getItem("token")}` }
             });
             setIsLoggedIn(true);
@@ -56,7 +56,7 @@ const CreateTreino = () => {
 
     //         const metadeUrl = 'http://localhost:3000/prova/'
     //         const urlprova = { urlprova: metadeUrl + nameUrl}
-    //         const response = await axios.post('https://api.comunhaorara.com:8081/prova/criar', urlprova, config)
+    //         const response = await axios.post('https://api.comunhaorara.com:8080/prova/criar', urlprova, config)
     //         console.log('Deu certo', urlprova)
     //         console.log('Deu certo 2', response)
     //     } catch (error) {
@@ -84,7 +84,7 @@ const CreateTreino = () => {
             const treinoData = { treino1, treino2, treino3, treino4, treino5, treino6, treino7, userid: Userid, nameUrl, nameProva, linkUrl }; // Inclui nameUrl
             //createUrlProva()
             try {
-                await axios.post('https://api.comunhaorara.com:8081/treino/criar', treinoData, config);
+                await axios.post('https://api.comunhaorara.com:8080/treino/criar', treinoData, config);
                 console.log('Treino cadastrado com sucesso');
                 window.location.reload()
             } catch (error) {
