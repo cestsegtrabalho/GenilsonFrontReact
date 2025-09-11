@@ -27,7 +27,7 @@ const Prova = () => {
 
     const fetchNameUrl = async () => {
         try {
-            const response = await axios.get(`https://api.comunhaorara.com/prova/${nameUrl}`);
+            const response = await axios.get(`https://api.comunhaorara.com:8081/prova/${nameUrl}`);
             setData(response.data);
             setnomeCurso(response.data.nameProva)
         } catch (error) {
@@ -58,7 +58,7 @@ const Prova = () => {
 
     const enviarDados = async () => {
         try {
-            const response = await axios.post('https://api.comunhaorara.com/historicoprova/criar', {
+            const response = await axios.post('https://api.comunhaorara.com:8081/historicoprova/criar', {
                 tituloProva: nomeCurso,
                 name: name,
                 email: email,

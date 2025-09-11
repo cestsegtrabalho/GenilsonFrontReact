@@ -8,7 +8,7 @@ const PrimeiroAcesso = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://api.comunhaorara.com/first-access', { email });
+      const response = await axios.post('https://api.comunhaorara.com:8081/first-access', { email });
       setMessage(response.data.message);
     } catch (error) {
       setMessage(error.response.data.message);

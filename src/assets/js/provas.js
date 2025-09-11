@@ -17,7 +17,7 @@ const Provas = () => {
 
     const fetchProvas = async () => {
         try {
-            const response = await axios.get('https://api.comunhaorara.com/treino/buscar');
+            const response = await axios.get('https://api.comunhaorara.com:8081/treino/buscar');
             setProvas(response.data);
             setNameUrl(response.data.nameUrl)
             console.log('teste', nameUrl)
@@ -43,7 +43,7 @@ const Provas = () => {
         try {
             const token = localStorage.getItem('token');
             const config = { headers: { Authorization: `${token}` } };
-            const response = await axios.patch(`https://api.comunhaorara.com/treino/${editProvaId}`, {
+            const response = await axios.patch(`https://api.comunhaorara.com:8081/treino/${editProvaId}`, {
                 nameProva: editTitulo,
                 nameUrl: editUrlProva,
                 treino1: questoes.treino1,
@@ -66,7 +66,7 @@ const Provas = () => {
         try {
             const token = localStorage.getItem('token');
             const config = { headers: { Authorization: `${token}` } };
-            await axios.delete(`https://api.comunhaorara.com/treino/${id}`, config);
+            await axios.delete(`https://api.comunhaorara.com:8081/treino/${id}`, config);
             setProvas(provas.filter(prova => prova._id !== id));
         } catch (error) {
             console.error('Erro ao deletar prova:', error);
