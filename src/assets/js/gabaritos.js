@@ -20,7 +20,7 @@ const Gabaritos = () => {
 
     const fetchCursos = async () => {
         try {
-            const response = await axios.get('https://api.cestsegtrabalho.com.br/gabarito/buscar');
+            const response = await axios.get('https://api.comunhaorara.com/gabarito/buscar');
             setCursos(response.data);
         } catch (error) {
             console.error('Erro ao buscar cursos:', error);
@@ -37,9 +37,9 @@ const Gabaritos = () => {
         try {
             const token = localStorage.getItem('token');
             const config = { headers: { Authorization: `${token}` } };
-            const metadeUrl = 'https://api.cestsegtrabalho.com.br/curso/';
+            const metadeUrl = 'https://api.comunhaorara.com/curso/';
             // const novolinkUrl = metadeUrl + editNameUrl;
-            const response = await axios.patch(`https://api.cestsegtrabalho.com.br/gabarito/${editCursoId}`, { titulo: editTitulo, conteudogabarito: editConteudo, }, config);
+            const response = await axios.patch(`https://api.comunhaorara.com/gabarito/${editCursoId}`, { titulo: editTitulo, conteudogabarito: editConteudo, }, config);
             setCursos(cursos.map(curso => curso._id === editCursoId ? response.data : curso));
             setEditCursoId(null);
             setEditTitulo('');
@@ -53,7 +53,7 @@ const Gabaritos = () => {
         try {
             const token = localStorage.getItem('token');
             const config = { headers: { Authorization: `${token}` } };
-            await axios.delete(`https://api.cestsegtrabalho.com.br/gabarito/${id}`, config);
+            await axios.delete(`https://api.comunhaorara.com/gabarito/${id}`, config);
             setCursos(cursos.filter(curso => curso._id !== id));
         } catch (error) {
             console.error('Erro ao deletar curso:', error);

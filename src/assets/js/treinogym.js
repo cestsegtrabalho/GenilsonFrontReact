@@ -10,7 +10,7 @@ const TreinoGym = () => {
     
     const fetchUserData = async () => {
         try {
-            const responseUser = await axios.get(`https://api.cestsegtrabalho.com.br/${username}`);
+            const responseUser = await axios.get(`https://api.comunhaorara.com/${username}`);
             setUserData(responseUser.data);
         } catch (error) {
             console.error("Erro ao buscar os dados da loja: ", error);
@@ -19,7 +19,7 @@ const TreinoGym = () => {
 
     const fetchTreinos = async () => {
         try {
-            const response = await axios.get(`https://api.cestsegtrabalho.com.br/treinogym/buscar`)
+            const response = await axios.get(`https://api.comunhaorara.com/treinogym/buscar`)
             setTreinos(response.data);
         } catch (error) {
             console.error('Erro ao buscar treinos: ', error);

@@ -18,7 +18,7 @@ const CreateCurso = () => {
             const savedToken = localStorage.getItem("token");
             if (savedToken) {
                 setToken(savedToken); // Salva o token no estado
-                const responseUserToken = await axios.get(`https://api.cestsegtrabalho.com.br/protected/user/buscar`, {
+                const responseUserToken = await axios.get(`https://api.comunhaorara.com/protected/user/buscar`, {
                     headers: { Authorization: `${savedToken}` }
                 });
                 setIsLoggedIn(true);
@@ -51,7 +51,7 @@ const CreateCurso = () => {
         const cursoData = { titulo, conteudo, nameUrl, linkUrl, urlvideo };
 
         try {
-            await axios.post('https://api.cestsegtrabalho.com.br/curso/criar', cursoData, config);
+            await axios.post('https://api.comunhaorara.com/curso/criar', cursoData, config);
             console.log('Curso cadastrado com sucesso');
             window.location.reload();
         } catch (error) {
