@@ -41,7 +41,7 @@ const Home = () => {
     // Pega os dados da loja
     const fetchData = async () => {
         try {
-            const responseUser = await axios.get(`https://api.comunhaorara.com:8080/${username}`);
+            const responseUser = await axios.get(`https://api.comunhaorara.com/${username}`);
             setUserData(responseUser.data);
             console.log('parametro: ', username)
         } catch (error) {
@@ -51,7 +51,7 @@ const Home = () => {
 
     const fetchDataToken = async () => {
         try {
-            const responseUserToken = await axios.get(`https://api.comunhaorara.com:8080/protected/user/buscar`, {
+            const responseUserToken = await axios.get(`https://api.comunhaorara.com/protected/user/buscar`, {
                 headers: { Authorization: `${localStorage.getItem("token")}` }
             })
             setIsLoggedIn(true);

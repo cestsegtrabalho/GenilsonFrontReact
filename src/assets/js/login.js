@@ -18,7 +18,7 @@ const Login = () => {
     const [message, setMessage] = useState('')
 
     const handleLogin = () => {
-      axios.post("https://api.comunhaorara.com:8080/user/login", { email, password })
+      axios.post("https://api.comunhaorara.com/user/login", { email, password })
         .then((response) => {
           const { token, id, name, username, phone } = response.data;
           setToken(token);

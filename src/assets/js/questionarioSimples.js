@@ -14,7 +14,7 @@ const ProvaSimples = () => {
 
     const fetchNameUrl = async () => {
         try {
-            const response = await axios.get(`https://api.comunhaorara.com:8080/prova/${nameUrl}`);
+            const response = await axios.get(`https://api.comunhaorara.com/prova/${nameUrl}`);
             setData(response.data);
             setnomeCurso(response.data.nameProva)
         } catch (error) {
