@@ -37,7 +37,7 @@ const Prova = () => {
     
     // Validação da senha
     function validarSenha() {
-        if (senha.trim() !== '112') {
+        if (senha.trim() !== '333') {
             alert("Senha incorreta! Tente novamente.");
             return false; // Impede o envio do formulário
         }
